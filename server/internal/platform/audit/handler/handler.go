@@ -1,30 +1,33 @@
-package tenant
+package handler
 
 import (
 	"github.com/gin-gonic/gin"
 
+	"go-react-admin/server/internal/platform/audit/dto"
+	"go-react-admin/server/internal/platform/audit/service"
 	"go-react-admin/server/internal/shared/pagination"
 	"go-react-admin/server/internal/shared/response"
 )
 
-type Handler struct{}
-
-type item struct {
-	ID     string `json:"id"`
-	Name   string `json:"name"`
-	Status string `json:"status"`
+type Handler struct {
+	svc *service.Service
 }
 
-// List returns example tenants. Replace with service/repo when requirements arrive.
+func New(svc *service.Service) *Handler {
+	return &Handler{svc: svc}
+}
+
 func (h *Handler) List(c *gin.Context) {
 	var q pagination.Query
 	_ = c.ShouldBindQuery(&q)
 	q.Normalize()
 
-	list := []item{
-		{ID: "tenant-demo", Name: "Demo 租户", Status: "active"},
+	list, err := h.svc.List(c.Request.Context())
+	if err != nil {
+		response.Internal(c, "list audit failed")
+		return
 	}
-	response.OK(c, pagination.Result[item]{
+	response.OK(c, pagination.Result[dto.Item]{
 		List:     list,
 		Total:    int64(len(list)),
 		Page:     q.Page,

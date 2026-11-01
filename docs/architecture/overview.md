@@ -29,10 +29,11 @@
 | web platform | 租户切换、应用开通、用户角色 | 业务复杂表单（属 apps） |
 | web apps | 应用内页面 | 绕过权限/租户上下文 |
 
-## 关键路径（目标结构，随实现落地）
+## 关键路径
 
-- 后端平台：`server/internal/platform/`
-- 后端应用：`server/internal/apps/<app>/`
-- 前端：`web/` 下 platform 与 apps 对齐命名
+- 后端分层：[layering.md](./layering.md)
+- 后端平台：`server/internal/platform/<name>/{handler,service,repo}` + `module.go`
+- 后端应用：`server/internal/apps/<code>/`（同构）
+- 前端：`web/src/{platform,apps}` 与后端对齐命名
 
-目录未生成前，以本文 + [../ai-workflow/](../ai-workflow/) 为准推进脚手架。
+流程见 [../ai-workflow/](../ai-workflow/)。

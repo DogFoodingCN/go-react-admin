@@ -29,7 +29,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	router := bootstrap.NewRouter(bootstrap.Deps{Config: cfg, DB: gdb})
+	router := bootstrap.NewRouter(cfg, gdb)
 	slog.Info("api listening", "addr", cfg.Server.Addr)
 	if err := router.Run(cfg.Server.Addr); err != nil {
 		slog.Error("server stopped", "err", err)

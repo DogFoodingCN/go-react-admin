@@ -1,8 +1,9 @@
 # go-react-admin · server
 
-方案 A：Go + Gin + GORM + PostgreSQL。业务逻辑按后续需求填充；当前为**可运行示例/占位**。
+方案 A：Go + Gin + GORM + PostgreSQL。  
+分层：[docs/architecture/layering.md](../docs/architecture/layering.md) · 约定：[docs/server/conventions.md](../docs/server/conventions.md)
 
-约定：[docs/server/conventions.md](../docs/server/conventions.md) · [ADR 0003](../docs/architecture/adr/0003-backend-stack.md)
+当前为**可运行示例/占位**，无真实业务逻辑。
 
 ## 快速开始
 
@@ -10,43 +11,25 @@
 cd server
 go mod tidy
 go run ./cmd/api
-# 可选：go run ./cmd/api configs/config.example.yaml
 ```
 
-默认无 DB 也可启动（`database.dsn` 留空或 `GRA_DB_DSN=`）。健康检查：`GET /healthz`。
+无 DB 可启动（DSN 空）。健康检查：`GET /healthz`。
 
 ## 示例 API
 
-| 方法 | 路径 | 说明 |
+| 方法 | 路径 | 鉴权 |
 |------|------|------|
-| POST | `/api/v1/auth/login` | 示例登录，返回 JWT |
-| GET | `/api/v1/platform/tenants` | 示例租户列表（需 Bearer） |
-| GET | `/api/v1/platform/apps` | 示例应用列表 |
-| GET | `/api/v1/platform/iam/me` | 示例权限码 |
-| GET | `/api/v1/platform/audit` | 空审计列表占位 |
-| GET | `/api/v1/apps/demo/items` | Demo 应用示例列表 |
+| POST | `/api/v1/auth/login` | 否 |
+| GET | `/api/v1/platform/tenants` | Bearer |
+| GET | `/api/v1/platform/apps` | Bearer |
+| GET | `/api/v1/platform/iam/me` | Bearer |
+| GET | `/api/v1/platform/audit` | Bearer |
+| GET | `/api/v1/apps/demo/items` | Bearer |
 
-前端占位 token `dev-token` 亦可通过鉴权。请求可带 `X-Tenant-Id`。
+兼容前端占位 token：`Authorization: Bearer dev-token`，可选 `X-Tenant-Id`。
 
-```bash
-curl -s localhost:8080/api/v1/auth/login -H 'Content-Type: application/json' \
-  -d '{"username":"admin","password":"admin"}'
+## 结构要点
 
-curl -s localhost:8080/api/v1/apps/demo/items \
-  -H "Authorization: Bearer <token>" \
-  -H "X-Tenant-Id: tenant-demo"
-```
-
-## 目录
-
-```text
-cmd/api/
-internal/bootstrap/
-internal/platform/{auth,tenant,app,iam,audit}
-internal/apps/demo/{handler,service,repo,dto}
-internal/shared/{middleware,db,response,errors,pagination}
-migrations/          # goose 示例 SQL
-configs/
-```
-
-迁移（有 Postgres 后）：使用 [goose](https://github.com/pressly/goose) 执行 `migrations/`。
+- 模块实现 `module.Module`，由 `bootstrap` 统一挂载
+- Handler → Service → Repo；Service 只用 `context.Context` + `shared/ctx`
+- JWT：`shared/authjwt`；租户 scope 助手：`shared/db.WithTenant`

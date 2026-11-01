@@ -6,7 +6,8 @@
 |------|------|
 | [tech-stack-options.md](./tech-stack-options.md) | 后端技术栈对比（已选方案 A） |
 | [ADR 0003](../architecture/adr/0003-backend-stack.md) | 后端栈正式决策 |
-| [conventions.md](./conventions.md) | 分层、命名、错误与权限 |
+| [layering.md](../architecture/layering.md) | 分层结构图与依赖规则 |
+| [conventions.md](./conventions.md) | 目录、分层、命名、禁止项 |
 | [module-map.md](./module-map.md) | 模块地图（随应用更新） |
 | [checklist.md](./checklist.md) | AI/人类实现自检 |
 

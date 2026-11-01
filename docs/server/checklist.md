@@ -4,17 +4,19 @@
 
 ## 结构
 
-- [ ] 代码落在 `platform` 或正确的 `apps/<code>`，未混放
-- [ ] 路由已注册；模块在 bootstrap 中挂载（若适用）
+- [ ] 代码落在 `platform/<name>` 或 `apps/<code>`，含 handler / service / repo（按需 model/dto）
+- [ ] 通过 `module.Module` 注册；未在业务包外手写零散路由（除 healthz）
+- [ ] Service **不** import Gin；租户/用户来自 `shared/ctx` 或显式参数
 
 ## 租户与安全
 
-- [ ] 读写含 tenant scope
-- [ ] 权限码校验在 service 或统一中间件完成
-- [ ] 敏感操作写审计（若属于平台/高危操作）
+- [ ] 租户表读写经 `db.WithTenant`
+- [ ] 鉴权走 middleware；JWT 走 `shared/authjwt`
+- [ ] 权限码校验在 service 或统一中间件（有业务时）
+- [ ] 敏感操作写审计（有业务时）
 
 ## 质量
 
-- [ ] 公开 API 有明确错误语义
-- [ ] 迁移可向前执行（若有）
-- [ ] `go test` / 构建通过（环境就绪时）
+- [ ] 统一 `shared/response` 错误语义
+- [ ] 新表有 goose 迁移
+- [ ] `go build ./...` 通过

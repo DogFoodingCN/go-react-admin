@@ -5,6 +5,7 @@
 | 文档 | 内容 |
 |------|------|
 | [overview.md](./overview.md) | 系统全景、模块边界 |
+| [layering.md](./layering.md) | 后端分层与依赖规则 |
 | [tenancy.md](./tenancy.md) | 多租户模型与隔离 |
 | [multi-app.md](./multi-app.md) | 多应用注册与挂载 |
 | [adr/](./adr/) | 架构决策记录 |

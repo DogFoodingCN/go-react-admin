@@ -1,27 +1,30 @@
 package service
 
 import (
-	"go-react-admin/server/internal/apps/demo/dto"
-	"go-react-admin/server/internal/shared/middleware"
+	"context"
 
-	"github.com/gin-gonic/gin"
+	"go-react-admin/server/internal/apps/demo/dto"
+	"go-react-admin/server/internal/apps/demo/repo"
+	apctx "go-react-admin/server/internal/shared/ctx"
 )
 
-// Service holds demo business rules. Fill in when requirements arrive.
-type Service struct{}
-
-func New() *Service {
-	return &Service{}
+type Service struct {
+	repo *repo.Repo
 }
 
-// ListExample returns stub rows scoped conceptually to the request tenant.
-func (s *Service) ListExample(c *gin.Context) []dto.Item {
-	tenantID := middleware.TenantID(c)
-	return []dto.Item{
-		{
-			ID:     "1",
-			Title:  "首个业务应用切片",
-			Remark: "tenant=" + tenantID + "; replace with repo query later",
-		},
+func New(r *repo.Repo) *Service {
+	return &Service{repo: r}
+}
+
+func (s *Service) ListItems(ctx context.Context) ([]dto.Item, error) {
+	tenantID := apctx.TenantID(ctx)
+	rows, err := s.repo.ListExample(ctx, tenantID)
+	if err != nil {
+		return nil, err
 	}
+	out := make([]dto.Item, 0, len(rows))
+	for _, row := range rows {
+		out = append(out, dto.Item{ID: row.ID, Title: row.Title, Remark: row.Remark})
+	}
+	return out, nil
 }

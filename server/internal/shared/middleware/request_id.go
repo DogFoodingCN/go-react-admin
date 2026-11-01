@@ -6,7 +6,6 @@ import (
 )
 
 const HeaderRequestID = "X-Request-Id"
-const ContextRequestID = "request_id"
 
 func RequestID() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -14,7 +13,6 @@ func RequestID() gin.HandlerFunc {
 		if id == "" {
 			id = uuid.NewString()
 		}
-		c.Set(ContextRequestID, id)
 		c.Writer.Header().Set(HeaderRequestID, id)
 		c.Next()
 	}

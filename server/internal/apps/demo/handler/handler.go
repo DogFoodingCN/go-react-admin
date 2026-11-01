@@ -22,7 +22,11 @@ func (h *Handler) List(c *gin.Context) {
 	_ = c.ShouldBindQuery(&q)
 	q.Normalize()
 
-	list := h.svc.ListExample(c)
+	list, err := h.svc.ListItems(c.Request.Context())
+	if err != nil {
+		response.Internal(c, "list demo items failed")
+		return
+	}
 	response.OK(c, pagination.Result[dto.Item]{
 		List:     list,
 		Total:    int64(len(list)),

@@ -4,27 +4,17 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v5"
 
+	"go-react-admin/server/internal/shared/authjwt"
+	apctx "go-react-admin/server/internal/shared/ctx"
 	"go-react-admin/server/internal/shared/response"
 )
 
-const (
-	ContextUserID   = "user_id"
-	ContextUserName = "user_name"
-	HeaderTenantID  = "X-Tenant-Id"
-	ContextTenantID = "tenant_id"
-)
+const HeaderTenantID = "X-Tenant-Id"
 
-type Claims struct {
-	UserID   string `json:"uid"`
-	UserName string `json:"uname"`
-	TenantID string `json:"tid"`
-	jwt.RegisteredClaims
-}
-
-// AuthJWT validates Bearer token. Stub-friendly: accepts legacy "dev-token" used by web bootstrap.
-func AuthJWT(secret string) gin.HandlerFunc {
+// AuthJWT validates Bearer token and injects user/tenant into request context.
+// Stub-friendly: accepts web bootstrap token "dev-token".
+func AuthJWT(jwtMgr *authjwt.Manager) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		header := c.GetHeader("Authorization")
 		if header == "" {
@@ -39,57 +29,40 @@ func AuthJWT(secret string) gin.HandlerFunc {
 			return
 		}
 
-		// Web placeholder login until real auth is wired.
+		var (
+			userID   string
+			userName string
+			tenantID string
+		)
+
 		if token == "dev-token" {
-			c.Set(ContextUserID, "user-dev")
-			c.Set(ContextUserName, "admin")
-			tenant := c.GetHeader(HeaderTenantID)
-			if tenant == "" {
-				tenant = "tenant-demo"
+			userID = "user-dev"
+			userName = "admin"
+			tenantID = c.GetHeader(HeaderTenantID)
+			if tenantID == "" {
+				tenantID = "tenant-demo"
 			}
-			c.Set(ContextTenantID, tenant)
-			c.Next()
-			return
+		} else {
+			claims, err := jwtMgr.Parse(token)
+			if err != nil {
+				response.Unauthorized(c, "invalid token")
+				return
+			}
+			userID = claims.UserID
+			userName = claims.UserName
+			tenantID = c.GetHeader(HeaderTenantID)
+			if tenantID == "" {
+				tenantID = claims.TenantID
+			}
+			if tenantID == "" {
+				response.Unauthorized(c, "missing tenant")
+				return
+			}
 		}
 
-		parsed, err := jwt.ParseWithClaims(token, &Claims{}, func(t *jwt.Token) (interface{}, error) {
-			return []byte(secret), nil
-		})
-		if err != nil || !parsed.Valid {
-			response.Unauthorized(c, "invalid token")
-			return
-		}
-
-		claims, ok := parsed.Claims.(*Claims)
-		if !ok {
-			response.Unauthorized(c, "invalid claims")
-			return
-		}
-
-		c.Set(ContextUserID, claims.UserID)
-		c.Set(ContextUserName, claims.UserName)
-
-		tenant := c.GetHeader(HeaderTenantID)
-		if tenant == "" {
-			tenant = claims.TenantID
-		}
-		if tenant == "" {
-			response.Unauthorized(c, "missing tenant")
-			return
-		}
-		c.Set(ContextTenantID, tenant)
+		ctx := apctx.WithUser(c.Request.Context(), userID, userName)
+		ctx = apctx.WithTenant(ctx, tenantID)
+		c.Request = c.Request.WithContext(ctx)
 		c.Next()
 	}
-}
-
-func TenantID(c *gin.Context) string {
-	v, _ := c.Get(ContextTenantID)
-	s, _ := v.(string)
-	return s
-}
-
-func UserID(c *gin.Context) string {
-	v, _ := c.Get(ContextUserID)
-	s, _ := v.(string)
-	return s
 }

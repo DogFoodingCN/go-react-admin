@@ -1,21 +1,33 @@
 package repo
 
-import "gorm.io/gorm"
+import (
+	"context"
 
-// Repo is a placeholder for demo persistence.
-// Use db.WithTenant(gdb, tenantID) for all tenant-owned queries.
+	"gorm.io/gorm"
+
+	"go-react-admin/server/internal/apps/demo/model"
+)
+
 type Repo struct {
 	db *gorm.DB
 }
 
-func New(db *gorm.DB) *Repo {
-	return &Repo{db: db}
+func New(gdb *gorm.DB) *Repo {
+	return &Repo{db: gdb}
 }
 
-// Example: future List would look like:
+// ListExample returns stubs.
+// Real implementation should query via:
 //
-//	func (r *Repo) List(tenantID string) ([]Model, error) {
-//		var rows []Model
-//		err := db.WithTenant(r.db, tenantID).Find(&rows).Error
-//		return rows, err
-//	}
+//	db.WithTenant(r.db, tenantID).Find(&rows)
+func (r *Repo) ListExample(_ context.Context, tenantID string) ([]model.Item, error) {
+	_ = r.db
+	return []model.Item{
+		{
+			ID:       "1",
+			TenantID: tenantID,
+			Title:    "首个业务应用切片",
+			Remark:   "tenant=" + tenantID + "; replace with repo query later",
+		},
+	}, nil
+}
