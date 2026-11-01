@@ -23,6 +23,19 @@ Intake → Plan → Implement → Verify → Document → Handoff
 | `deploy/` | 部署与编排 |
 | `docs/` | 架构、约定与 AI 工作流 |
 
-## 快速开始（人类）
+## 快速开始
 
-脚手架尚未落地时，先读 `docs/architecture/` 与 `docs/ai-workflow/`，再生成代码骨架。
+### Web（方案 A 已初始化）
+
+```bash
+cd web
+pnpm install
+pnpm approve-builds esbuild   # 首次若提示 ignored builds
+pnpm dev                      # http://localhost:5173
+```
+
+任意账号可本地占位登录。说明见 [`web/README.md`](./web/README.md) 与 [`docs/web/`](./docs/web/)。
+
+### Server
+
+`server/` 脚手架待建；架构约定见 [`docs/server/`](./docs/server/) 与 [`docs/architecture/`](./docs/architecture/)。
