@@ -1,0 +1,17 @@
+# Copy to config.yaml or use env overrides. Do not commit secrets.
+
+server:
+  addr: ":8080"
+  mode: debug # debug | release
+
+database:
+  # Leave empty to start without DB (example/stub handlers still work).
+  dsn: "host=127.0.0.1 user=gra password=gra dbname=gra_admin port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+
+auth:
+  jwt_secret: "change-me-in-production"
+  token_ttl_hours: 24
+
+cors:
+  allow_origins:
+    - "http://localhost:5173"

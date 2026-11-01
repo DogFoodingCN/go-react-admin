@@ -13,6 +13,8 @@ web/node_modules/
 web/dist/
 web/.omc/
 
-# Server (预留)
+# Server
 server/bin/
 server/tmp/
+server/configs/config.yaml
+server/configs/*.local.yaml

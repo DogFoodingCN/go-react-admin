@@ -36,6 +36,13 @@ pnpm dev                      # http://localhost:5173
 
 任意账号可本地占位登录。说明见 [`web/README.md`](./web/README.md) 与 [`docs/web/`](./docs/web/)。
 
-### Server
+### Server（方案 A 已初始化）
 
-`server/` 脚手架待建；架构约定见 [`docs/server/`](./docs/server/) 与 [`docs/architecture/`](./docs/architecture/)。
+```bash
+cd server
+go mod tidy
+go run ./cmd/api
+# GET http://localhost:8080/healthz
+```
+
+示例 API 与目录见 [`server/README.md`](./server/README.md)；业务按需求迭代，当前为占位实现。

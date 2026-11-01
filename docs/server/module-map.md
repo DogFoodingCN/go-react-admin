@@ -1,27 +1,30 @@
 # Server 模块地图
 
-> 代码目录创建后，将「路径」列改为真实路径。
+栈：方案 A（Gin + GORM）。脚手架已初始化（示例/占位，2026-11-01）。
 
 ## Platform
 
-| 模块 | 目标路径 | 职责 | 状态 |
-|------|----------|------|------|
-| tenant | `internal/platform/tenant` | 租户 CRUD、状态 | planned |
-| app | `internal/platform/app` | 应用定义与租户开通 | planned |
-| iam | `internal/platform/iam` | 用户/角色/权限/菜单 | planned |
-| auth | `internal/platform/auth` | 登录与令牌 | planned |
-| audit | `internal/platform/audit` | 审计 | planned |
-| setting | `internal/platform/setting` | 配置 | planned |
+| 模块 | 路径 | 职责 | 状态 |
+|------|------|------|------|
+| auth | `internal/platform/auth` | 示例登录发 JWT | example |
+| tenant | `internal/platform/tenant` | 示例租户列表 | example |
+| app | `internal/platform/app` | 示例应用列表 | example |
+| iam | `internal/platform/iam` | 示例 `/me` 权限码 | example |
+| audit | `internal/platform/audit` | 空列表占位 | example |
+| setting | — | 未建 | planned |
 
 ## Apps
 
-| app_code | 目标路径 | 职责 | 状态 |
-|----------|----------|------|------|
-| — | — | 尚无业务应用；建议首个 `demo` | — |
+| app_code | 路径 | 职责 | 状态 |
+|----------|------|------|------|
+| demo | `internal/apps/demo` | 示例 items 列表（handler/service/repo 壳） | example |
 
-## Shared
+## Shared / Bootstrap
 
-| 模块 | 目标路径 | 职责 | 状态 |
-|------|----------|------|------|
-| middleware | `internal/shared/middleware` | 鉴权、租户、日志 | planned |
-| db | `internal/shared/db` | 连接与 tenant scope | planned |
+| 模块 | 路径 | 状态 |
+|------|------|------|
+| middleware | `internal/shared/middleware` | ready |
+| db | `internal/shared/db` | ready（含 `WithTenant`） |
+| response / errors / pagination | `internal/shared/*` | ready |
+| bootstrap | `internal/bootstrap` | ready |
+| config | `internal/config` | ready |

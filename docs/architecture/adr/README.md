@@ -6,6 +6,7 @@
 |------|------|------|
 | [0001](./0001-shared-db-tenant-id.md) | 共享库 + tenant_id | Accepted |
 | [0002](./0002-frontend-stack.md) | 前端技术栈方案 A（Vite + React + antd） | Accepted |
+| [0003](./0003-backend-stack.md) | 后端技术栈方案 A（Gin + GORM + PostgreSQL） | Accepted |
 
 ## 模板字段
 
