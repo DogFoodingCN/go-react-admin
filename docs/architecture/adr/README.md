@@ -5,6 +5,7 @@
 | 编号 | 标题 | 状态 |
 |------|------|------|
 | [0001](./0001-shared-db-tenant-id.md) | 共享库 + tenant_id | Accepted |
+| [0002](./0002-frontend-stack.md) | 前端技术栈方案 A（Vite + React + antd） | Accepted |
 
 ## 模板字段
 
