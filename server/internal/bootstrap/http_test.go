@@ -17,7 +17,7 @@ func TestIAMMeWithDevToken(t *testing.T) {
 	cfg.Auth.TokenTTLHours = 1
 	cfg.CORS.AllowOrigins = []string{"http://localhost:5173"}
 
-	r := bootstrap.NewRouter(cfg, nil)
+	r := bootstrap.NewRouter(cfg, nil) // nil holder → empty DB mode
 	w := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodGet, "/api/v1/platform/iam/me", nil)
 	req.Header.Set("Authorization", "Bearer dev-token")

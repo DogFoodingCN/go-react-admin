@@ -1,4 +1,6 @@
-# 多应用模型
+# 多应用模型（速查）
+
+完整总览（管理 + 实现 + Mermaid）：**[tenancy-multi-app.md](./tenancy-multi-app.md)**。
 
 ## 目标
 
@@ -16,17 +18,17 @@
 |----|------|
 | 应用代号 `app_code` | 小写，与目录名一致，如 `demo` |
 | 后端路径 | `server/internal/apps/<app_code>/` |
-| 前端路径 | `web/.../apps/<app_code>/`（具体以 web module-map 为准） |
-| 权限码前缀 | `<app_code>:` 例如 `demo:order:read` |
-| 菜单 | 归属应用；未开通不下发 |
+| 前端路径 | `web/src/apps/<app_code>/` |
+| 权限码前缀 | `<app_code>:` 例如 `demo:item:read` |
+| 菜单 | 归属应用；未开通不下发（目标；现状静态菜单） |
 
 ## 应用清单
 
 | app_code | 显示名 | 状态 | 说明 |
 |----------|--------|------|------|
-| （待建） | | | 首个建议 `demo` 打通闭环 |
+| demo | Demo 应用 | example | 示例列表 API/页面；开通校验与落库待需求 |
 
-新增应用时：更新本表 + `docs/server/module-map.md` + `docs/web/module-map.md`。
+新增应用时：更新本表 + [../server/module-map.md](../server/module-map.md) + [../web/module-map.md](../web/module-map.md)。
 
 ## 平台 API 能力（目标）
 
@@ -36,4 +38,4 @@
 
 ## AI 新增应用
 
-使用提示词 [../ai-workflow/prompts/new-app.md](../ai-workflow/prompts/new-app.md)，并遵守本页约定。
+使用提示词 [../ai-workflow/prompts/new-app.md](../ai-workflow/prompts/new-app.md)，并遵守本页与 [tenancy-multi-app.md](./tenancy-multi-app.md)。

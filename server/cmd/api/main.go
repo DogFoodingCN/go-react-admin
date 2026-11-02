@@ -23,14 +23,17 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Empty DSN is allowed: Open returns nil and setup wizard can provision later.
+	// config.Load already merges configs/config.local.yaml when present.
 	gdb, err := db.Open(cfg.Database.DSN)
 	if err != nil {
 		slog.Error("open database failed", "err", err)
 		os.Exit(1)
 	}
 
-	router := bootstrap.NewRouter(cfg, gdb)
-	slog.Info("api listening", "addr", cfg.Server.Addr)
+	holder := db.NewHolder(gdb)
+	router := bootstrap.NewRouter(cfg, holder)
+	slog.Info("api listening", "addr", cfg.Server.Addr, "dsn_configured", cfg.Database.DSN != "")
 	if err := router.Run(cfg.Server.Addr); err != nil {
 		slog.Error("server stopped", "err", err)
 		os.Exit(1)

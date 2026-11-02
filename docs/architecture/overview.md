@@ -1,5 +1,7 @@
 # 系统全景
 
+多租户 × 多应用的管理与实现（含总体 Mermaid）：**[tenancy-multi-app.md](./tenancy-multi-app.md)**。
+
 ## 逻辑视图
 
 ```text
@@ -12,11 +14,11 @@
 │                 server (Go)                 │
 │  platform: tenant / app / iam / auth / audit│
 │  apps/*: 业务应用模块                        │
-│  shared: middleware / db scope / errors     │
+│  shared: middleware / db scope / ctx        │
 └──────────────────┬──────────────────────────┘
                    │
             ┌──────▼──────┐
-            │  DB / Cache │
+            │  DB / Cache │  共享库 + tenant_id
             └─────────────┘
 ```
 
@@ -31,9 +33,9 @@
 
 ## 关键路径
 
+- 多租户/多应用总览：[tenancy-multi-app.md](./tenancy-multi-app.md)
 - 后端分层：[layering.md](./layering.md)
-- 后端平台：`server/internal/platform/<name>/{handler,service,repo}` + `module.go`
-- 后端应用：`server/internal/apps/<code>/`（同构）
-- 前端：`web/src/{platform,apps}` 与后端对齐命名
+- 后端：`server/internal/platform|apps` + `module.go`
+- 前端：`web/src/{platform,apps}`
 
 流程见 [../ai-workflow/](../ai-workflow/)。

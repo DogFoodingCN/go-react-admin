@@ -6,13 +6,15 @@ import (
 
 	"go-react-admin/server/internal/config"
 	"go-react-admin/server/internal/shared/authjwt"
+	"go-react-admin/server/internal/shared/db"
 )
 
 // Deps is the shared runtime dependency bag for HTTP modules.
 type Deps struct {
-	Config *config.Config
-	DB     *gorm.DB
-	JWT    *authjwt.Manager
+	Config   *config.Config
+	DB       *gorm.DB // snapshot at boot; prefer DBHolder.Get() for live handle
+	DBHolder *db.Holder
+	JWT      *authjwt.Manager
 }
 
 // MountPoints separates public and authenticated route groups under /api/v1.

@@ -6,6 +6,7 @@
 
 - [ ] Intake 中的 Success criteria 全部满足或已书面降级
 - [ ] 租户隔离与权限路径已按 Verify 测过（若涉及数据/鉴权）
+- [ ] 若标注 Figma final：UI 已对照 screenshot；实现落在 antd/现有壳而非未适配的 MCP 样例栈
 
 ## 代码
 

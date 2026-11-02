@@ -13,6 +13,9 @@ type Config struct {
 	Database DatabaseConfig `yaml:"database"`
 	Auth     AuthConfig     `yaml:"auth"`
 	CORS     CORSConfig     `yaml:"cors"`
+
+	// LocalConfigPath is the gitignored overlay used to persist DSN after setup.
+	LocalConfigPath string `yaml:"-"`
 }
 
 type ServerConfig struct {
@@ -47,6 +50,13 @@ func Load(path string) (*Config, error) {
 		if err := yaml.Unmarshal(raw, cfg); err != nil {
 			return nil, fmt.Errorf("parse config: %w", err)
 		}
+	}
+
+	cfg.LocalConfigPath = ResolveLocalPath(path)
+
+	// Local overlay (gitignored) supplies DSN after first-time setup.
+	if err := MergeLocalFile(cfg, cfg.LocalConfigPath); err != nil {
+		return nil, err
 	}
 
 	applyEnv(cfg)

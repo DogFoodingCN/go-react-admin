@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { ProLayout } from '@ant-design/pro-components'
-import { Dropdown, Space, Typography } from 'antd'
+import { Dropdown, Typography } from 'antd'
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
 import { useAuthStore } from '@/shared/auth/auth-store'
 import { useTenantStore } from '@/shared/tenant/tenant-store'
@@ -18,10 +18,24 @@ export function BasicLayout() {
     <div style={{ height: '100%' }}>
       <ProLayout
         title="go-react-admin"
-        logo="/vite.svg"
+        logo="/brand/logo-mark.svg"
         layout="mix"
+        navTheme="realDark"
         fixedHeader
         fixSiderbar
+        token={{
+          header: {
+            colorBgHeader: '#001529',
+            colorHeaderTitle: '#fff',
+            colorTextMenu: 'rgba(255,255,255,0.85)',
+          },
+          sider: {
+            colorMenuBackground: '#001529',
+            colorTextMenu: 'rgba(255,255,255,0.75)',
+            colorTextMenuSelected: '#fff',
+            colorBgMenuItemSelected: 'rgba(255,255,255,0.12)',
+          },
+        }}
         location={{ pathname: location.pathname }}
         route={{ path: '/', routes: defaultMenuData }}
         menuItemRender={(item, dom) => (
@@ -59,10 +73,12 @@ export function BasicLayout() {
           ),
         }}
         actionsRender={() => [
-          <Space key="tenant" size={4}>
-            <Typography.Text type="secondary">租户</Typography.Text>
-            <Typography.Text>{tenantName || '未选择'}</Typography.Text>
-          </Space>,
+          <Typography.Text
+            key="tenant"
+            style={{ color: 'rgba(255,255,255,0.85)' }}
+          >
+            租户 · {tenantName || '未选择'}
+          </Typography.Text>,
         ]}
       >
         <Outlet />

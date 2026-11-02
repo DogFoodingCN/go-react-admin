@@ -12,8 +12,8 @@ type Module struct {
 }
 
 func NewModule(deps module.Deps) *Module {
-	_ = repo.New(deps.DB) // wired for future credential store
-	svc := service.New(deps.JWT)
+	r := repo.New(deps.DBHolder)
+	svc := service.New(deps.JWT, r)
 	return &Module{h: handler.New(svc)}
 }
 

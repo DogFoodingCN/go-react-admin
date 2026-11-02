@@ -36,6 +36,14 @@ func NotFound(c *gin.Context, message string) {
 	Fail(c, http.StatusNotFound, 40400, message)
 }
 
+func Conflict(c *gin.Context, message string) {
+	Fail(c, http.StatusConflict, 40900, message)
+}
+
+func ServiceUnavailable(c *gin.Context, message string) {
+	Fail(c, http.StatusServiceUnavailable, 50300, message)
+}
+
 func Internal(c *gin.Context, message string) {
 	Fail(c, http.StatusInternalServerError, 50000, message)
 }

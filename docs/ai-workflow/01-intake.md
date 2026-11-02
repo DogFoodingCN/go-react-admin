@@ -7,7 +7,7 @@
 ## 输入
 
 - 用户自然语言需求
-- 可选：截图、API 草稿、现有模块名
+- 可选：截图、**Figma 深链**、API 草稿、现有模块名
 
 ## AI 必须问清的问题（缺一则主动追问）
 
@@ -17,6 +17,9 @@
 4. **范围**：只要 API / 只要 UI / 全栈？是否含 migration？
 5. **成功标准**：用什么现象证明完成？（页面、接口、数据结果）
 6. **非目标**：明确不做的事，防止范围蔓延
+7. **UI / Figma**：有无设计稿？链接是否指向具体 Frame（含 node-id）？状态 final / draft / reference-only？
+
+有 UI 设计时详见 [feature-dev-with-figma.md](./feature-dev-with-figma.md)。
 
 ## 输出模板
 
@@ -36,6 +39,10 @@
 
 ## Success criteria
 - [ ]
+
+## UI / Design
+- Figma: <url 或 无>
+- 状态: final | draft | reference-only | n/a
 
 ## Constraints
 - 兼容性 / 期限 / 技术限制

@@ -25,6 +25,30 @@ func Open(dsn string) (*gorm.DB, error) {
 	return gdb, nil
 }
 
+// Ping verifies the underlying SQL connection is alive.
+func Ping(gdb *gorm.DB) error {
+	if gdb == nil {
+		return fmt.Errorf("database is nil")
+	}
+	sqlDB, err := gdb.DB()
+	if err != nil {
+		return err
+	}
+	return sqlDB.Ping()
+}
+
+// Close releases the underlying SQL connection pool.
+func Close(gdb *gorm.DB) error {
+	if gdb == nil {
+		return nil
+	}
+	sqlDB, err := gdb.DB()
+	if err != nil {
+		return err
+	}
+	return sqlDB.Close()
+}
+
 // WithTenant returns a session that scopes queries by tenant_id.
 // Callers must use this for tenant-owned tables once real repos are implemented.
 func WithTenant(gdb *gorm.DB, tenantID string) *gorm.DB {

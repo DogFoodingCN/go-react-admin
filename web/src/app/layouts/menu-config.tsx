@@ -3,12 +3,14 @@ import {
   AuditOutlined,
   ClusterOutlined,
   DashboardOutlined,
+  ExperimentOutlined,
   TeamOutlined,
 } from '@ant-design/icons'
 import type { MenuDataItem } from '@ant-design/pro-components'
 
 /**
- * Static bootstrap menus. Replace with backend-delivered menus filtered by tenant apps.
+ * Static bootstrap menus（对齐 Figma Shell）。
+ * 后续由后端按租户开通应用下发并过滤。
  */
 export const defaultMenuData: MenuDataItem[] = [
   {
@@ -39,7 +41,7 @@ export const defaultMenuData: MenuDataItem[] = [
   {
     path: '/apps/demo',
     name: 'Demo 应用',
-    icon: <AppstoreOutlined />,
+    icon: <ExperimentOutlined />,
     children: [
       {
         path: '/apps/demo/list',

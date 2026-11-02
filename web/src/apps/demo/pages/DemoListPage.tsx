@@ -1,6 +1,9 @@
 import { ProTable } from '@ant-design/pro-components'
 import type { ProColumns } from '@ant-design/pro-components'
 import { PageContainer } from '@/shared/ui/PageContainer'
+import { EmptyState } from '@/shared/ui/EmptyState'
+import { ForbiddenResult } from '@/shared/ui/ForbiddenResult'
+import { usePermission } from '@/shared/access/usePermission'
 
 type DemoRow = {
   id: string
@@ -18,11 +21,21 @@ const mockData: DemoRow[] = [
   {
     id: '1',
     title: '首个业务应用切片',
-    remark: '目录对齐 server/internal/apps/demo',
+    remark: 'tenant=tenant-demo',
   },
 ]
 
 export function DemoListPage() {
+  const canRead = usePermission('demo:item:read')
+
+  if (!canRead) {
+    return (
+      <PageContainer title="Demo · 示例列表">
+        <ForbiddenResult subTitle="缺少权限码 demo:item:read" />
+      </PageContainer>
+    )
+  }
+
   return (
     <PageContainer
       title="Demo · 示例列表"
@@ -33,7 +46,8 @@ export function DemoListPage() {
         search={false}
         columns={columns}
         dataSource={mockData}
-        pagination={false}
+        pagination={{ pageSize: 10 }}
+        locale={{ emptyText: <EmptyState description="暂无示例数据" /> }}
         toolBarRender={false}
       />
     </PageContainer>

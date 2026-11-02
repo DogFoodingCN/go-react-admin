@@ -8,9 +8,10 @@
 
 1. **Migration / 模型**（若有）
 2. **server**：repo → service → handler → 路由注册 → 权限码
-3. **web**：api client → 页面/表单 → 路由与菜单 → 权限守卫
-4. **横切**：审计日志、错误映射、i18n 文案（若项目已有）
-5. **deploy/config**：仅当运行方式变化时
+3. **（有 Figma）Design sync**：`get_design_context` + `get_screenshot`（见 [feature-dev-with-figma.md](./feature-dev-with-figma.md)）
+4. **web**：api client → 页面/表单（按稿映射到 antd/Pro）→ 路由与菜单 → 权限守卫
+5. **横切**：审计日志、错误映射、i18n 文案（若项目已有）
+6. **deploy/config**：仅当运行方式变化时
 
 ## 编码约束（摘要）
 

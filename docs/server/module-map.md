@@ -24,8 +24,9 @@
 
 | 模块 | 路径前缀 | HTTP | 状态 |
 |------|----------|------|------|
-| auth | `internal/platform/auth` | `POST /api/v1/auth/login` | example |
-| tenant | `internal/platform/tenant` | `GET /api/v1/platform/tenants` | example |
+| setup | `internal/platform/setup` | `GET/POST /api/v1/setup/*` | ready（status / test-connection / initialize；AutoMigrate） |
+| auth | `internal/platform/auth` | `POST /api/v1/auth/login` | ready（有 platform_users 时 bcrypt；无 DB 仍 stub） |
+| tenant | `internal/platform/tenant` | `GET/POST /api/v1/platform/tenants` · `GET/PATCH /:id` | ready（DB 空时 stub） |
 | app | `internal/platform/app` | `GET /api/v1/platform/apps` | example |
 | iam | `internal/platform/iam` | `GET /api/v1/platform/iam/me` | example |
 | audit | `internal/platform/audit` | `GET /api/v1/platform/audit` | example |

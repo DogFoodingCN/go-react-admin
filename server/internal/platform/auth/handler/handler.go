@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"errors"
+
 	"github.com/gin-gonic/gin"
 
 	"go-react-admin/server/internal/platform/auth/dto"
@@ -22,9 +24,16 @@ func (h *Handler) Login(c *gin.Context) {
 		response.BadRequest(c, "username and password required")
 		return
 	}
-	out, err := h.svc.LoginExample(c.Request.Context(), req)
+	out, err := h.svc.Login(c.Request.Context(), req)
 	if err != nil {
-		response.Internal(c, "sign token failed")
+		switch {
+		case errors.Is(err, service.ErrInvalidCredentials):
+			response.Unauthorized(c, err.Error())
+		case errors.Is(err, service.ErrAuthUnavailable):
+			response.ServiceUnavailable(c, err.Error())
+		default:
+			response.Internal(c, "login failed")
+		}
 		return
 	}
 	response.OK(c, out)

@@ -7,7 +7,8 @@
 | 目录 | 用途 | AI 何时必读 |
 |------|------|-------------|
 | [ai-workflow/](./ai-workflow/) | AI 全栈工作流（需求→规划→实现→验证→回写） | **每次任务开始** |
-| [architecture/](./architecture/) | 租户模型、多应用、ADR | 改平台能力或跨模块设计时 |
+| [design/](./design/) | Figma 出图（B/C 端）与设计交付 | **按需求画稿 / 设计 Intake 时**；见 [figma-b-c-from-requirements.md](./design/figma-b-c-from-requirements.md) |
+| [architecture/](./architecture/) | 租户×应用总览、分层、ADR | 改平台能力或跨模块设计时；先读 [tenancy-multi-app.md](./architecture/tenancy-multi-app.md) |
 | [server/](./server/) | Go 后端约定与模块地图 | 改 `server/` 时 |
 | [web/](./web/) | React 前端约定与模块地图 | 改 `web/` 时 |
 | [deploy/](./deploy/) | 部署与环境 | 改配置、镜像、发布时 |
@@ -25,7 +26,8 @@
 
 ```text
 docs/ai-workflow  →  流程与提示词（不放业务实现）
-docs/architecture →  跨端设计真相源
+docs/design       →  Figma / B·C 端出图
+docs/architecture →  跨端架构真相源
 docs/server       →  server/ 代码约定
 docs/web          →  web/ 代码约定
 docs/deploy       →  deploy/ 与运行环境
@@ -33,7 +35,7 @@ docs/deploy       →  deploy/ 与运行环境
 
 ## 维护原则
 
-- **分级存放**：流程进 `ai-workflow`，设计进 `architecture`，实现约定进 `server`/`web`，禁止全部堆在根 README。
+- **分级存放**：流程进 `ai-workflow`，出图进 `design`，架构进 `architecture`，实现约定进 `server`/`web`，禁止全部堆在根 README。
 - **单一真相源**：同一事实只在一处详写，其它处链接。
 - **可执行**：文档写清输入、输出、完成标准；避免空泛口号。
 - **随代码演进**：行为变更必须同步对应 docs；见 [contributing/doc-maintenance.md](./contributing/doc-maintenance.md)。

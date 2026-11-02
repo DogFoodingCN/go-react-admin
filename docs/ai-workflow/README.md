@@ -21,9 +21,12 @@ Intake → Plan → Implement → Verify → Document → Handoff
 
 ## 配套文档
 
+- [feature-dev-with-figma.md](./feature-dev-with-figma.md) — **功能开发实操 + Figma 接入点**
+- [plans/figma-to-fullstack-impl.md](./plans/figma-to-fullstack-impl.md) — **Figma 终稿 → 前后端实现 Plan（当前执行）**
+- [plans/admin-ui-figma-antd.md](./plans/admin-ui-figma-antd.md) — Figma 节点索引与画板清单
 - [roles.md](./roles.md) — AI 角色与何时切换
 - [definition-of-done.md](./definition-of-done.md) — 完成定义（DoD）
-- [prompts/](./prompts/) — 可复用提示词
+- [prompts/](./prompts/) — 可复用提示词（含 [feature-figma.md](./prompts/feature-figma.md)）
 
 ## 硬性规则（AI 必须遵守）
 
@@ -33,14 +36,27 @@ Intake → Plan → Implement → Verify → Document → Handoff
 4. **全栈默认双侧**：除非用户明确只要一端，否则 server + web 一起规划。
 5. **无证据不宣称完成**：至少有构建/测试/手工验证之一的结果。
 6. **文档回写**：行为变更必须更新 `docs/` 对应层级。
+7. **有 Figma 时**：实现 UI 前必须拉取 design context + screenshot；落地为 antd/方案 A，见 [feature-dev-with-figma.md](./feature-dev-with-figma.md)。
 
 ## 推荐启动话术（给人类）
+
+无设计稿：
 
 ```text
 按 docs/ai-workflow 执行：<功能简述>
 范围：server + web
 约束：<租户/权限/兼容性>
 成功标准：<可验证的结果>
+```
+
+有 Figma：
+
+```text
+按 docs/ai-workflow/feature-dev-with-figma.md 执行：<功能>
+Figma: <含 node-id 的 Frame 链接>
+设计状态: final | draft
+范围：server + web
+成功标准：…
 ```
 
 更细的模板见 [prompts/](./prompts/)。

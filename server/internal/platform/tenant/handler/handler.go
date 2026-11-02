@@ -1,9 +1,12 @@
 package handler
 
 import (
+	"errors"
+
 	"github.com/gin-gonic/gin"
 
 	"go-react-admin/server/internal/platform/tenant/dto"
+	"go-react-admin/server/internal/platform/tenant/repo"
 	"go-react-admin/server/internal/platform/tenant/service"
 	"go-react-admin/server/internal/shared/pagination"
 	"go-react-admin/server/internal/shared/response"
@@ -35,6 +38,62 @@ func (h *Handler) List(c *gin.Context) {
 	})
 }
 
+func (h *Handler) Get(c *gin.Context) {
+	item, err := h.svc.Get(c.Request.Context(), c.Param("id"))
+	if err != nil {
+		if errors.Is(err, repo.ErrNotFound) {
+			response.NotFound(c, "tenant not found")
+			return
+		}
+		response.Internal(c, "get tenant failed")
+		return
+	}
+	response.OK(c, item)
+}
+
+func (h *Handler) Create(c *gin.Context) {
+	var req dto.CreateRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		response.BadRequest(c, "name required")
+		return
+	}
+	item, err := h.svc.Create(c.Request.Context(), req)
+	if err != nil {
+		if errors.Is(err, service.ErrInvalidInput) {
+			response.BadRequest(c, err.Error())
+			return
+		}
+		response.Internal(c, "create tenant failed")
+		return
+	}
+	response.OK(c, item)
+}
+
+func (h *Handler) Update(c *gin.Context) {
+	var req dto.UpdateRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		response.BadRequest(c, "name and status required")
+		return
+	}
+	item, err := h.svc.Update(c.Request.Context(), c.Param("id"), req)
+	if err != nil {
+		if errors.Is(err, repo.ErrNotFound) {
+			response.NotFound(c, "tenant not found")
+			return
+		}
+		if errors.Is(err, service.ErrInvalidInput) {
+			response.BadRequest(c, err.Error())
+			return
+		}
+		response.Internal(c, "update tenant failed")
+		return
+	}
+	response.OK(c, item)
+}
+
 func (h *Handler) Register(r gin.IRoutes) {
 	r.GET("", h.List)
+	r.POST("", h.Create)
+	r.GET("/:id", h.Get)
+	r.PATCH("/:id", h.Update)
 }

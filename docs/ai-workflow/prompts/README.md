@@ -5,5 +5,6 @@
 | 模板 | 场景 |
 |------|------|
 | [feature.md](./feature.md) | 新功能（默认全栈） |
+| [feature-figma.md](./feature-figma.md) | 新功能且有 Figma |
 | [bugfix.md](./bugfix.md) | 缺陷修复 |
 | [new-app.md](./new-app.md) | 注册并落地一个新业务应用 |
