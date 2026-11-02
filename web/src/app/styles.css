@@ -1,3 +1,8 @@
+html {
+  /* 1rem = 16px；改此值即可整体缩放 */
+  font-size: 16px;
+}
+
 html,
 body,
 #root,
@@ -53,47 +58,58 @@ body {
   pointer-events: none;
 }
 
-.setup-entry__lockup {
+/* 左侧品牌区：lockup 与 accent 用 rem 间距串联，缩放时相对距离不变 */
+.setup-entry__brand-block {
   position: absolute;
   top: 9.25%;
   left: 5%;
   display: flex;
-  align-items: center;
-  gap: 32px;
-  height: 60px;
-  width: 292px;
+  flex-direction: column;
+  /* logo 下端 → accent 上端的固定间距（随根字号缩放） */
+  gap: 1.75rem;
+  width: 21.4375rem;
+}
+
+.setup-entry__lockup {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+  width: 18.25rem;
   color: #D1E5FF;
-  font-size: 43px;
+  font-size: 2.6875rem;
   font-weight: 600;
   line-height: 1;
   white-space: nowrap;
-  text-shadow: 0 2px 8px rgba(0, 22, 76, 0.32);
+  text-shadow: 0 0.125rem 0.5rem rgba(0, 22, 76, 0.32);
 }
 
 .setup-entry__lockup img {
   display: block;
-  width: 90px;
-  height: 75px;
+  flex: none;
+  width: 3.75rem;
+  height: 3.125rem;
+}
+
+.setup-entry__lockup span {
+  /* 与 logo 下沿对齐时略上移，光学居中 */
+  padding-bottom: 0.25rem;
 }
 
 .setup-entry__brand-copy {
-  position: absolute;
-  top: 15.84%;
-  left: 5.34%;
-  width: 343px;
+  width: 100%;
 }
 
 .setup-entry__accent {
   display: block;
-  width: 72.52px;
-  height: 6.12px;
-  margin-bottom: 39.32px;
+  width: 4.5325rem;
+  height: 0.3825rem;
+  margin-bottom: 2.4575rem;
 }
 
 .setup-entry__brand-copy h1 {
   margin: 0;
   color: #fff;
-  font-size: 50.68px;
+  font-size: 3.1675rem;
   font-weight: 700;
   line-height: 1.258;
   letter-spacing: 0;
@@ -101,9 +117,9 @@ body {
 }
 
 .setup-entry__brand-copy p {
-  margin: 17.98px 0 0;
+  margin: 1.12375rem 0 0;
   color: #d7e6ff;
-  font-size: 20.97px;
+  font-size: 1.31062rem;
   font-weight: 400;
   line-height: 1.667;
   white-space: nowrap;
@@ -113,21 +129,21 @@ body {
   position: absolute;
   top: 81.36%;
   left: 5.34%;
-  width: 336.35px;
+  width: 21.02188rem;
   display: flex;
   align-items: center;
-  height: 28px;
+  height: 1.75rem;
   color: #f5faff;
-  font-size: 15.73px;
-  line-height: 19px;
+  font-size: 0.98313rem;
+  line-height: 1.1875rem;
   white-space: nowrap;
 }
 
 .setup-entry__feature {
   display: flex;
   align-items: center;
-  gap: 14px;
-  height: 28px;
+  gap: 0.875rem;
+  height: 1.75rem;
 }
 
 .setup-entry__feature-icon {
@@ -143,8 +159,8 @@ body {
 }
 
 .setup-entry__feature-icon--secure {
-  width: 21px;
-  height: 28px;
+  width: 1.3125rem;
+  height: 1.75rem;
 }
 
 .setup-entry__feature-icon--secure img:first-child {
@@ -153,15 +169,15 @@ body {
 }
 
 .setup-entry__feature-icon--secure img:nth-child(2) {
-  top: 8.74px;
-  left: 5.24px;
-  width: 10.49px;
-  height: 7.86px;
+  top: 0.54625rem;
+  left: 0.3275rem;
+  width: 0.65563rem;
+  height: 0.49125rem;
 }
 
 .setup-entry__feature-icon--audit {
-  width: 18.35px;
-  height: 23.59px;
+  width: 1.14688rem;
+  height: 1.47437rem;
 }
 
 .setup-entry__feature-icon--audit img:first-child {
@@ -170,15 +186,15 @@ body {
 }
 
 .setup-entry__feature-icon--audit img:nth-child(2) {
-  top: 6.99px;
-  left: 4.37px;
-  width: 9.61px;
-  height: 10.49px;
+  top: 0.43688rem;
+  left: 0.27313rem;
+  width: 0.60062rem;
+  height: 0.65563rem;
 }
 
 .setup-entry__feature-icon--extensible {
-  width: 19.22px;
-  height: 23.59px;
+  width: 1.20125rem;
+  height: 1.47437rem;
 }
 
 .setup-entry__feature-icon--extensible img:first-child {
@@ -187,194 +203,194 @@ body {
 }
 
 .setup-entry__feature-icon--extensible img:nth-child(2) {
-  top: 5.24px;
-  width: 19.22px;
-  height: 18.35px;
+  top: 0.3275rem;
+  width: 1.20125rem;
+  height: 1.14688rem;
 }
 
 .setup-entry__feature-divider {
   width: 1px;
-  height: 22.72px;
-  margin: 0 22.72px 0 14.77px;
+  height: 1.42rem;
+  margin: 0 1.42rem 0 0.92312rem;
 }
 
 .setup-entry__features small {
   position: absolute;
-  top: 40.2px;
+  top: 2.5125rem;
   left: 0;
   color: #afcbfa;
-  font-size: 13.98px;
+  font-size: 0.87375rem;
   font-weight: 400;
-  line-height: 17px;
+  line-height: 1.0625rem;
 }
 
 .setup-entry__card {
   position: absolute;
   top: 18.32%;
   left: 56.92%;
-  width: 520.78px;
-  height: 569.71px;
+  width: 32.54875rem;
+  height: 35.60688rem;
   box-sizing: border-box;
-  border-radius: 17.48px;
+  border-radius: 1.0925rem;
   background: #fff;
-  box-shadow: 0 15.73px 41.94px rgba(51, 89, 178, 0.15);
+  box-shadow: 0 0.98313rem 2.62125rem rgba(51, 89, 178, 0.15);
 }
 
 .setup-entry__heading {
   position: absolute;
-  top: 39.32px;
-  left: 43.69px;
-  width: 420px;
+  top: 2.4575rem;
+  left: 2.73062rem;
+  width: 26.25rem;
 }
 
 .setup-entry__heading h2 {
   margin: 0;
   color: #122b62;
-  font-size: 31.46px;
+  font-size: 1.96625rem;
   font-weight: 700;
-  line-height: 38px;
+  line-height: 2.375rem;
   white-space: nowrap;
 }
 
 .setup-entry__heading p {
-  margin: 10.93px 0 0;
+  margin: 0.68312rem 0 0;
   color: #6677a5;
-  font-size: 17.48px;
+  font-size: 1.0925rem;
   font-weight: 400;
-  line-height: 21px;
+  line-height: 1.3125rem;
   white-space: nowrap;
 }
 
 .setup-entry__steps {
   position: absolute;
-  top: 143.46px;
-  left: 43.39px;
+  top: 8.96625rem;
+  left: 2.71188rem;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
 }
 
 .setup-entry__step {
   display: flex;
   align-items: center;
-  gap: 14px;
-  width: 439px;
-  height: 48px;
+  gap: 0.875rem;
+  width: 27.4375rem;
+  height: 3rem;
 }
 
 .setup-entry__step > span {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 1.75rem;
+  height: 1.75rem;
   flex: none;
   border-radius: 50%;
   background: #e8f0ff;
   color: #1766d6;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1rem;
 }
 
 .setup-entry__step > div {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.125rem;
 }
 
 .setup-entry__step strong {
   color: #26364f;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 1.125rem;
   white-space: nowrap;
 }
 
 .setup-entry__step small {
   color: #61708c;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 400;
-  line-height: 14px;
+  line-height: 0.875rem;
   white-space: nowrap;
 }
 
 .setup-entry__button {
   position: absolute;
-  top: 384.46px;
-  left: 43.69px;
-  width: 438.64px;
-  height: 47.18px;
+  top: 24.02875rem;
+  left: 2.73062rem;
+  width: 27.415rem;
+  height: 2.94875rem;
   padding: 0;
   border: 0;
-  border-radius: 7px;
+  border-radius: 0.4375rem;
   background: #1677ff url('/brand/setup-entry/button.svg') center / 100% 100% no-repeat;
   color: #fff;
   cursor: pointer;
   font: inherit;
-  font-size: 18.35px;
+  font-size: 1.14688rem;
   font-weight: 700;
-  line-height: 22px;
+  line-height: 1.375rem;
   text-align: center;
 }
 
 .setup-entry__button:focus-visible {
-  outline: 3px solid rgba(22, 119, 255, 0.35);
-  outline-offset: 3px;
+  outline: 0.1875rem solid rgba(22, 119, 255, 0.35);
+  outline-offset: 0.1875rem;
 }
 
 .setup-entry__card-footer {
   position: absolute;
-  top: 454.37px;
-  left: 43.69px;
-  width: 438.64px;
-  height: 23.59px;
+  top: 28.39813rem;
+  left: 2.73062rem;
+  width: 27.415rem;
+  height: 1.47437rem;
 }
 
 .setup-entry__footer-line {
   position: absolute;
-  top: 10.49px;
+  top: 0.65563rem;
   left: 0;
-  width: 438.64px;
+  width: 27.415rem;
   height: 1px;
 }
 
 .setup-entry__card-footer > span {
   position: absolute;
   top: 0;
-  left: 90.57px;
+  left: 5.66062rem;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 0 12px;
+  gap: 0.875rem;
+  padding: 0 0.75rem;
   background: #fff;
   color: #7181ad;
-  font-size: 14.85px;
-  line-height: 23.59px;
+  font-size: 0.92812rem;
+  line-height: 1.47437rem;
   white-space: nowrap;
 }
 
 .setup-entry__card-footer span img {
-  width: 19px;
-  height: 25px;
+  width: 1.1875rem;
+  height: 1.5625rem;
 }
 
 @media (max-width: 980px) {
   .setup-entry {
-    min-height: 811px;
+    min-height: 50.6875rem;
     overflow-x: hidden;
     overflow-y: auto;
   }
 
   .setup-entry__background {
     left: -1px;
-    width: 1442px;
-    height: 894px;
+    width: 90.125rem;
+    height: 55.875rem;
   }
 
   .setup-entry__card {
     left: 50%;
-    min-width: 520.78px;
+    min-width: 32.54875rem;
     transform: translateX(-50%);
   }
 
@@ -382,5 +398,9 @@ body {
   .setup-entry__features,
   .setup-entry__geometry {
     display: none;
+  }
+
+  .setup-entry__brand-block {
+    gap: 0;
   }
 }

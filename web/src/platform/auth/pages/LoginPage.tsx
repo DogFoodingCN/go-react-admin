@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getApiErrorMessage, login } from '@/shared/setup/api'
 import { useAuthStore } from '@/shared/auth/auth-store'
 import { useTenantStore } from '@/shared/tenant/tenant-store'
+import { rem } from '@/shared/style/rem'
 import { AuthBrandLayout } from '@/shared/ui/AuthBrandLayout'
 
 type LoginFormValues = {
@@ -87,22 +88,22 @@ export function LoginPage() {
       <Card
         bordered={false}
         style={{
-          borderRadius: 12,
-          boxShadow: '0 8px 24px rgba(15, 35, 80, 0.08)',
+          borderRadius: rem(12),
+          boxShadow: `0 ${rem(8)} ${rem(24)} rgba(15, 35, 80, 0.08)`,
         }}
-        styles={{ body: { padding: 36 } }}
+        styles={{ body: { padding: rem(36) } }}
       >
-        <Typography.Title level={2} style={{ marginTop: 0, marginBottom: 8 }}>
+        <Typography.Title level={2} style={{ marginTop: 0, marginBottom: rem(8) }}>
           {locked ? '登录已锁定' : '欢迎登录'}
         </Typography.Title>
-        <Typography.Paragraph type="secondary" style={{ marginBottom: 24 }}>
+        <Typography.Paragraph type="secondary" style={{ marginBottom: rem(24) }}>
           {locked
             ? '连续失败次数过多，请稍后再试或联系管理员开通'
             : '使用平台超管或租户账号进入控制台'}
         </Typography.Paragraph>
 
         {errorText && !locked ? (
-          <Typography.Paragraph type="danger" style={{ marginBottom: 16 }}>
+          <Typography.Paragraph type="danger" style={{ marginBottom: rem(16) }}>
             {errorText}
           </Typography.Paragraph>
         ) : null}
@@ -168,9 +169,9 @@ export function LoginPage() {
                 <Button
                   size="large"
                   style={{
-                    width: 120,
+                    width: rem(120),
                     fontWeight: 700,
-                    letterSpacing: 2,
+                    letterSpacing: rem(2),
                     background: '#e6f4ff',
                     borderColor: '#91caff',
                     color: '#0958d9',
@@ -188,13 +189,13 @@ export function LoginPage() {
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                marginBottom: 20,
+                marginBottom: rem(20),
               }}
             >
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>记住我</Checkbox>
               </Form.Item>
-              <Typography.Link type="secondary" style={{ fontSize: 13 }}>
+              <Typography.Link type="secondary" style={{ fontSize: rem(13) }}>
                 忘记密码？ 联系管理员
               </Typography.Link>
             </div>
@@ -203,7 +204,12 @@ export function LoginPage() {
             </Button>
             <Typography.Paragraph
               type="secondary"
-              style={{ textAlign: 'center', marginTop: 20, marginBottom: 0, fontSize: 13 }}
+              style={{
+                textAlign: 'center',
+                marginTop: rem(20),
+                marginBottom: 0,
+                fontSize: rem(13),
+              }}
             >
               安全 · 可审计 · 可扩展
             </Typography.Paragraph>

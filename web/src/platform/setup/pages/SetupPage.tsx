@@ -22,6 +22,7 @@ import {
 import { buildLibpqDsn } from '@/shared/setup/dsn'
 import { useSetupStore } from '@/shared/setup/setup-store'
 import type { AdminFormValues, DsnFormValues } from '@/shared/setup/types'
+import { rem } from '@/shared/style/rem'
 import {
   BRAND_LOGO_SRC,
   SetupWizardShell,
@@ -187,28 +188,30 @@ export function SetupPage() {
           src="/brand/setup-entry/decorative-geometry.svg"
         />
 
-        <div className="setup-entry__lockup">
-          <img src={BRAND_LOGO_SRC} alt="" width={60} height={50} />
-          <span>Go-React-Admin</span>
-        </div>
+        <div className="setup-entry__brand-block">
+          <div className="setup-entry__lockup">
+            <img src={BRAND_LOGO_SRC} alt="" />
+            <span>Go-React-Admin</span>
+          </div>
 
-        <section className="setup-entry__brand-copy">
-          <img
-            aria-hidden
-            className="setup-entry__accent"
-            src="/brand/setup-entry/accent-line.svg"
-          />
-          <h1>
-            多租户 · 多应用
-            <br />
-            管理控制台
-          </h1>
-          <p>
-            统一初始化、租户治理与应用开通，
-            <br />
-            让平台交付更清晰、更可控。
-          </p>
-        </section>
+          <section className="setup-entry__brand-copy">
+            <img
+              aria-hidden
+              className="setup-entry__accent"
+              src="/brand/setup-entry/accent-line.svg"
+            />
+            <h1>
+              多租户 · 多应用
+              <br />
+              管理控制台
+            </h1>
+            <p>
+              统一初始化、租户治理与应用开通，
+              <br />
+              让平台交付更清晰、更可控。
+            </p>
+          </section>
+        </div>
 
         <section className="setup-entry__features">
           <div className="setup-entry__feature">
@@ -286,16 +289,16 @@ export function SetupPage() {
     return (
       <SetupWizardShell>
         <SetupCard>
-          <Typography.Title level={3} style={{ marginTop: 0, marginBottom: 4 }}>
+          <Typography.Title level={3} style={{ marginTop: 0, marginBottom: rem(4) }}>
             系统初始化
           </Typography.Title>
-          <Typography.Paragraph type="secondary" style={{ marginBottom: 20 }}>
+          <Typography.Paragraph type="secondary" style={{ marginBottom: rem(20) }}>
             步骤 3/3 · 完成
           </Typography.Paragraph>
           <Steps
             current={3}
             items={stepItems}
-            style={{ marginBottom: 28 }}
+            style={{ marginBottom: rem(28) }}
           />
           <Result
             status="success"
@@ -315,10 +318,10 @@ export function SetupPage() {
   return (
     <SetupWizardShell>
       <SetupCard>
-        <Typography.Title level={3} style={{ marginTop: 0, marginBottom: 4 }}>
+        <Typography.Title level={3} style={{ marginTop: 0, marginBottom: rem(4) }}>
           {unreachable ? '系统初始化' : '系统初始化'}
         </Typography.Title>
-        <Typography.Paragraph type="secondary" style={{ marginBottom: 20 }}>
+        <Typography.Paragraph type="secondary" style={{ marginBottom: rem(20) }}>
           {unreachable
             ? '步骤 1/3 · 配置数据库连接（DSN）'
             : stepCaption}
@@ -326,7 +329,7 @@ export function SetupPage() {
 
         {unreachable ? (
           <>
-            <Steps current={0} items={stepItems} style={{ marginBottom: 24 }} />
+            <Steps current={0} items={stepItems} style={{ marginBottom: rem(24) }} />
             <Alert
               type="error"
               showIcon
@@ -335,16 +338,19 @@ export function SetupPage() {
                 status?.message ||
                 '系统已初始化，但数据库当前不可达。请检查 PostgreSQL 后重试，勿重复执行初始化。'
               }
-              style={{ marginBottom: 20 }}
+              style={{ marginBottom: rem(20) }}
             />
-            <Typography.Text type="secondary" style={{ display: 'block', marginBottom: 8 }}>
+            <Typography.Text
+              type="secondary"
+              style={{ display: 'block', marginBottom: rem(8) }}
+            >
               数据库连接串（DSN）
             </Typography.Text>
             <Input.TextArea
               rows={2}
               disabled
               placeholder="已持久化（脱敏，不回传完整 DSN）"
-              style={{ marginBottom: 16 }}
+              style={{ marginBottom: rem(16) }}
             />
             <Space>
               <Button onClick={() => void fetchStatus()}>返回修改</Button>
@@ -358,7 +364,7 @@ export function SetupPage() {
             <Steps
               current={current}
               items={stepItems}
-              style={{ marginBottom: 24 }}
+              style={{ marginBottom: rem(24) }}
             />
 
             {current === 0 ? (
@@ -450,7 +456,7 @@ export function SetupPage() {
                     type={testHint.type}
                     showIcon
                     message={testHint.text}
-                    style={{ marginBottom: 16 }}
+                    style={{ marginBottom: rem(16) }}
                   />
                 ) : null}
 
@@ -478,7 +484,7 @@ export function SetupPage() {
                   <Alert
                     type="info"
                     showIcon
-                    style={{ marginBottom: 16 }}
+                    style={{ marginBottom: rem(16) }}
                     message="将使用以下 DSN（脱敏）完成初始化"
                     description={<Typography.Text code>{previewDsn}</Typography.Text>}
                   />
@@ -548,10 +554,10 @@ function SetupCard({ children }: { children: ReactNode }) {
     <Card
       bordered={false}
       style={{
-        borderRadius: 8,
-        boxShadow: '0 8px 24px rgba(15, 35, 80, 0.08)',
+        borderRadius: rem(8),
+        boxShadow: `0 ${rem(8)} ${rem(24)} rgba(15, 35, 80, 0.08)`,
       }}
-      styles={{ body: { padding: '40px 48px' } }}
+      styles={{ body: { padding: `${rem(40)} ${rem(48)}` } }}
     >
       {children}
     </Card>

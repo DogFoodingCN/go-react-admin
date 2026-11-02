@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Typography } from 'antd'
+import { rem } from '@/shared/style/rem'
 
 type PageContainerProps = {
   title: string
@@ -15,14 +16,14 @@ export function PageContainer({
   children,
 }: PageContainerProps) {
   return (
-    <div style={{ padding: 24 }}>
+    <div style={{ padding: rem(24) }}>
       <div
         style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'flex-start',
-          marginBottom: 16,
-          gap: 16,
+          marginBottom: rem(16),
+          gap: rem(16),
         }}
       >
         <div>

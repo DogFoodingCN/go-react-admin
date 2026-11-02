@@ -3,6 +3,7 @@ import { ProTable } from '@ant-design/pro-components'
 import type { ProColumns } from '@ant-design/pro-components'
 import { Button, Card, Col, DatePicker, Input, Row, Space } from 'antd'
 import type { RangePickerProps } from 'antd/es/date-picker'
+import { rem } from '@/shared/style/rem'
 import { PageContainer } from '@/shared/ui/PageContainer'
 import { EmptyState } from '@/shared/ui/EmptyState'
 
@@ -102,7 +103,7 @@ export function AuditPage() {
 
   return (
     <PageContainer title="审计日志" description="操作审计占位页。">
-      <Card style={{ marginBottom: 16 }}>
+      <Card style={{ marginBottom: rem(16) }}>
         <Row gutter={[16, 12]} align="middle">
           <Col xs={24} md={8}>
             <Space direction="vertical" size={4} style={{ width: '100%' }}>
@@ -140,7 +141,7 @@ export function AuditPage() {
             </Space>
           </Col>
           <Col xs={24} md={4}>
-            <Space style={{ marginTop: 22 }}>
+            <Space style={{ marginTop: rem(22) }}>
               <Button type="primary" onClick={handleSearch}>
                 查询
               </Button>

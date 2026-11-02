@@ -6,6 +6,7 @@ import {
 } from '@ant-design/icons'
 import { Card, Col, Row, Space, Statistic, Typography } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import { rem } from '@/shared/style/rem'
 import { PageContainer } from '@/shared/ui/PageContainer'
 import { useTenantStore } from '@/shared/tenant/tenant-store'
 
@@ -43,7 +44,7 @@ export function DashboardPage() {
         </Col>
       </Row>
 
-      <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
+      <Row gutter={[16, 16]} style={{ marginTop: rem(16) }}>
         <Col xs={24} lg={16}>
           <Card title="快捷入口">
             <Row gutter={[12, 12]}>
@@ -53,10 +54,10 @@ export function DashboardPage() {
                     hoverable
                     size="small"
                     onClick={() => navigate(item.path)}
-                    styles={{ body: { textAlign: 'center', padding: 16 } }}
+                    styles={{ body: { textAlign: 'center', padding: rem(16) } }}
                   >
                     <Space direction="vertical" size={4}>
-                      <span style={{ fontSize: 22, color: '#1677ff' }}>
+                      <span style={{ fontSize: rem(22), color: '#1677ff' }}>
                         {item.icon}
                       </span>
                       <Typography.Text>{item.title}</Typography.Text>
@@ -69,7 +70,7 @@ export function DashboardPage() {
         </Col>
         <Col xs={24} lg={8}>
           <Card title="当前上下文">
-            <Typography.Paragraph style={{ marginBottom: 8 }}>
+            <Typography.Paragraph style={{ marginBottom: rem(8) }}>
               租户：{tenantName || '未选择'}
             </Typography.Paragraph>
             <Typography.Paragraph type="secondary" style={{ marginBottom: 0 }}>
