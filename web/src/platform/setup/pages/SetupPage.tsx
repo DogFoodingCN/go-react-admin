@@ -22,7 +22,10 @@ import {
 import { buildLibpqDsn } from '@/shared/setup/dsn'
 import { useSetupStore } from '@/shared/setup/setup-store'
 import type { AdminFormValues, DsnFormValues } from '@/shared/setup/types'
-import { AuthBrandLayout, SetupWizardShell } from '@/shared/ui/AuthBrandLayout'
+import {
+  BRAND_LOGO_SRC,
+  SetupWizardShell,
+} from '@/shared/ui/AuthBrandLayout'
 
 const stepItems = [
   {
@@ -172,74 +175,110 @@ export function SetupPage() {
 
   if (phase === 'entry' && !unreachable && !done) {
     return (
-      <AuthBrandLayout>
-        <Card
-          bordered={false}
-          style={{
-            borderRadius: 12,
-            boxShadow: '0 8px 24px rgba(15, 35, 80, 0.08)',
-          }}
-          styles={{ body: { padding: 36 } }}
-        >
-          <Typography.Title level={2} style={{ marginTop: 0, marginBottom: 8 }}>
-            系统尚未初始化
-          </Typography.Title>
-          <Typography.Paragraph type="secondary" style={{ marginBottom: 28 }}>
-            完成安装向导后，即可使用超管账号登录
-          </Typography.Paragraph>
-          <Space direction="vertical" size={20} style={{ width: '100%', marginBottom: 32 }}>
+      <div className="setup-entry">
+        <img
+          aria-hidden
+          className="setup-entry__background"
+          src="/brand/setup-entry/background.svg"
+        />
+        <img
+          aria-hidden
+          className="setup-entry__geometry"
+          src="/brand/setup-entry/decorative-geometry.svg"
+        />
+
+        <div className="setup-entry__lockup">
+          <img src={BRAND_LOGO_SRC} alt="" width={60} height={50} />
+          <span>Go-React-Admin</span>
+        </div>
+
+        <section className="setup-entry__brand-copy">
+          <img
+            aria-hidden
+            className="setup-entry__accent"
+            src="/brand/setup-entry/accent-line.svg"
+          />
+          <h1>
+            多租户 · 多应用
+            <br />
+            管理控制台
+          </h1>
+          <p>
+            统一初始化、租户治理与应用开通，
+            <br />
+            让平台交付更清晰、更可控。
+          </p>
+        </section>
+
+        <section className="setup-entry__features">
+          <div className="setup-entry__feature">
+            <span className="setup-entry__feature-icon setup-entry__feature-icon--secure">
+              <img src="/brand/setup-entry/icon-secure.svg" alt="" />
+              <img src="/brand/setup-entry/icon-secure-check.svg" alt="" />
+            </span>
+            <span>安全可靠</span>
+          </div>
+          <img className="setup-entry__feature-divider" src="/brand/setup-entry/divider.svg" alt="" />
+          <div className="setup-entry__feature">
+            <span className="setup-entry__feature-icon setup-entry__feature-icon--audit">
+              <img src="/brand/setup-entry/icon-audit.svg" alt="" />
+              <img src="/brand/setup-entry/icon-audit-inner.svg" alt="" />
+            </span>
+            <span>可审计</span>
+          </div>
+          <img className="setup-entry__feature-divider" src="/brand/setup-entry/divider.svg" alt="" />
+          <div className="setup-entry__feature">
+            <span className="setup-entry__feature-icon setup-entry__feature-icon--extensible">
+              <img src="/brand/setup-entry/icon-extensible.svg" alt="" />
+              <img src="/brand/setup-entry/icon-extensible-inner.svg" alt="" />
+            </span>
+            <span>可扩展</span>
+          </div>
+          <small>Powered by <a href='https://dogfooding.cn' target='_blank'>dogfooding.cn</a></small>
+        </section>
+
+        <main className="setup-entry__card">
+          <header className="setup-entry__heading">
+            <h2>系统尚未初始化</h2>
+            <p>完成安装向导后，即可使用超管账号登录</p>
+          </header>
+
+          <div className="setup-entry__steps">
             {entrySteps.map((item, index) => (
-              <div
-                key={item.title}
-                style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}
-              >
-                <div
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: 14,
-                    background: '#e6f4ff',
-                    color: '#1677ff',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: 600,
-                    fontSize: 13,
-                    flexShrink: 0,
-                  }}
-                >
-                  {index + 1}
-                </div>
+              <div className="setup-entry__step" key={item.title}>
+                <span>{index + 1}</span>
                 <div>
-                  <Typography.Text strong style={{ display: 'block' }}>
-                    {item.title}
-                  </Typography.Text>
-                  <Typography.Text type="secondary" style={{ fontSize: 12 }}>
-                    {item.desc}
-                  </Typography.Text>
+                  <strong>{item.title}</strong>
+                  <small>{item.desc}</small>
                 </div>
               </div>
             ))}
-          </Space>
-          <Button
-            type="primary"
-            size="large"
-            block
+          </div>
+
+          <button
+            className="setup-entry__button"
+            type="button"
             onClick={() => {
               setPhase('wizard')
               setCurrent(0)
             }}
           >
             开始初始化
-          </Button>
-          <Typography.Paragraph
-            type="secondary"
-            style={{ textAlign: 'center', marginTop: 20, marginBottom: 0, fontSize: 13 }}
-          >
-            约 2～3 分钟 · 可随时返回本页
-          </Typography.Paragraph>
-        </Card>
-      </AuthBrandLayout>
+          </button>
+
+          <footer className="setup-entry__card-footer">
+            <img
+              aria-hidden
+              className="setup-entry__footer-line"
+              src="/brand/setup-entry/footer-line.svg"
+            />
+            <span>
+              <img src="/brand/setup-entry/footer-shield.svg" alt="" />
+              约 2～3 分钟 · 可随时返回本页
+            </span>
+          </footer>
+        </main>
+      </div>
     )
   }
 

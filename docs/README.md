@@ -1,4 +1,4 @@
-# go-react-admin 文档中心
+# Go-React-Admin 文档中心
 
 通用多租户、多应用后台（Go + React）。本文档体系同时服务**人类开发者**与 **AI 全栈代理**。
 

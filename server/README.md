@@ -1,4 +1,4 @@
-# go-react-admin · server
+# Go-React-Admin · server
 
 方案 A：Go + Gin + GORM + PostgreSQL。  
 分层：[docs/architecture/layering.md](../docs/architecture/layering.md) · 约定：[docs/server/conventions.md](../docs/server/conventions.md)

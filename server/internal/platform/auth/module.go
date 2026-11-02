@@ -1,10 +1,10 @@
 package auth
 
 import (
-	"go-react-admin/server/internal/module"
-	"go-react-admin/server/internal/platform/auth/handler"
-	"go-react-admin/server/internal/platform/auth/repo"
-	"go-react-admin/server/internal/platform/auth/service"
+	"Go-React-Admin/server/internal/module"
+	"Go-React-Admin/server/internal/platform/auth/handler"
+	"Go-React-Admin/server/internal/platform/auth/repo"
+	"Go-React-Admin/server/internal/platform/auth/service"
 )
 
 type Module struct {

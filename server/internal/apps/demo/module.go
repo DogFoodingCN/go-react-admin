@@ -1,10 +1,10 @@
 package demo
 
 import (
-	"go-react-admin/server/internal/apps/demo/handler"
-	"go-react-admin/server/internal/apps/demo/repo"
-	"go-react-admin/server/internal/apps/demo/service"
-	"go-react-admin/server/internal/module"
+	"Go-React-Admin/server/internal/apps/demo/handler"
+	"Go-React-Admin/server/internal/apps/demo/repo"
+	"Go-React-Admin/server/internal/apps/demo/service"
+	"Go-React-Admin/server/internal/module"
 )
 
 type Module struct {

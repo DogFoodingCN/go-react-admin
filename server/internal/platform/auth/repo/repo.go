@@ -6,8 +6,8 @@ import (
 
 	"gorm.io/gorm"
 
-	setupmodel "go-react-admin/server/internal/platform/setup/model"
-	"go-react-admin/server/internal/shared/db"
+	setupmodel "Go-React-Admin/server/internal/platform/setup/model"
+	"Go-React-Admin/server/internal/shared/db"
 )
 
 // Repo looks up platform_users for login when the DB is available.

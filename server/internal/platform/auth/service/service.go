@@ -7,9 +7,9 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	"go-react-admin/server/internal/platform/auth/dto"
-	"go-react-admin/server/internal/platform/auth/repo"
-	"go-react-admin/server/internal/shared/authjwt"
+	"Go-React-Admin/server/internal/platform/auth/dto"
+	"Go-React-Admin/server/internal/platform/auth/repo"
+	"Go-React-Admin/server/internal/shared/authjwt"
 )
 
 var (

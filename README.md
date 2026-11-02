@@ -1,4 +1,4 @@
-# go-react-admin
+# Go-React-Admin
 
 General Multi-Tenant Multi-App Backend（Go + React）。
 

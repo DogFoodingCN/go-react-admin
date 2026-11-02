@@ -5,11 +5,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"go-react-admin/server/internal/platform/tenant/dto"
-	"go-react-admin/server/internal/platform/tenant/repo"
-	"go-react-admin/server/internal/platform/tenant/service"
-	"go-react-admin/server/internal/shared/pagination"
-	"go-react-admin/server/internal/shared/response"
+	"Go-React-Admin/server/internal/platform/tenant/dto"
+	"Go-React-Admin/server/internal/platform/tenant/repo"
+	"Go-React-Admin/server/internal/platform/tenant/service"
+	"Go-React-Admin/server/internal/shared/pagination"
+	"Go-React-Admin/server/internal/shared/response"
 )
 
 type Handler struct {

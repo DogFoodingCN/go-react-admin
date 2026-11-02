@@ -152,7 +152,7 @@ export function BrandLockup({ light = false, style, height = 36 }: BrandLockupPr
     >
       <img
         src={BRAND_LOGO_SRC}
-        alt="go-react-admin"
+        alt="Go-React-Admin"
         width={width}
         height={height}
         style={{ display: 'block', objectFit: 'contain' }}
@@ -165,7 +165,7 @@ export function BrandLockup({ light = false, style, height = 36 }: BrandLockupPr
           letterSpacing: 0.2,
         }}
       >
-        go-react-admin
+        Go-React-Admin
       </Typography.Text>
     </div>
   )

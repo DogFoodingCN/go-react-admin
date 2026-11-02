@@ -17,7 +17,7 @@ export function BasicLayout() {
   return (
     <div style={{ height: '100%' }}>
       <ProLayout
-        title="go-react-admin"
+        title="Go-React-Admin"
         logo="/brand/logo-mark.svg"
         layout="mix"
         navTheme="realDark"

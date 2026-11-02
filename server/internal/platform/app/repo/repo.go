@@ -5,7 +5,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"go-react-admin/server/internal/platform/app/dto"
+	"Go-React-Admin/server/internal/platform/app/dto"
 )
 
 type Repo struct {

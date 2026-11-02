@@ -123,7 +123,7 @@ Tokens：主色 `#1677ff`（antd primary）、中性灰阶、圆角 6px（与现
 
 ### 切片 F — Figma（本阶段先完成）
 
-1. [x] 在 Starter team 建文件 `go-react-admin B-Admin (antd)`
+1. [x] 在 Starter team 建文件 `Go-React-Admin B-Admin (antd)`
 2. [x] Features 主路径 Frame（Setup×2 / Login / Dashboard / Tenants / Apps / IAM / Audit / Demo）
 3. [x] 回填节点索引与深链
 4. [x] Kit 重建：Foundations Variables + Shell + Form/403/Empty；旧稿降级 draft

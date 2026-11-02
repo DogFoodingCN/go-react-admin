@@ -6,19 +6,19 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"go-react-admin/server/internal/apps/demo"
-	"go-react-admin/server/internal/config"
-	"go-react-admin/server/internal/module"
-	platformApp "go-react-admin/server/internal/platform/app"
-	platformAudit "go-react-admin/server/internal/platform/audit"
-	platformAuth "go-react-admin/server/internal/platform/auth"
-	platformIAM "go-react-admin/server/internal/platform/iam"
-	platformSetup "go-react-admin/server/internal/platform/setup"
-	platformTenant "go-react-admin/server/internal/platform/tenant"
-	"go-react-admin/server/internal/shared/authjwt"
-	"go-react-admin/server/internal/shared/db"
-	"go-react-admin/server/internal/shared/middleware"
-	"go-react-admin/server/internal/shared/response"
+	"Go-React-Admin/server/internal/apps/demo"
+	"Go-React-Admin/server/internal/config"
+	"Go-React-Admin/server/internal/module"
+	platformApp "Go-React-Admin/server/internal/platform/app"
+	platformAudit "Go-React-Admin/server/internal/platform/audit"
+	platformAuth "Go-React-Admin/server/internal/platform/auth"
+	platformIAM "Go-React-Admin/server/internal/platform/iam"
+	platformSetup "Go-React-Admin/server/internal/platform/setup"
+	platformTenant "Go-React-Admin/server/internal/platform/tenant"
+	"Go-React-Admin/server/internal/shared/authjwt"
+	"Go-React-Admin/server/internal/shared/db"
+	"Go-React-Admin/server/internal/shared/middleware"
+	"Go-React-Admin/server/internal/shared/response"
 )
 
 func NewRouter(cfg *config.Config, holder *db.Holder) *gin.Engine {

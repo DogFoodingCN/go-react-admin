@@ -1,10 +1,10 @@
 package iam
 
 import (
-	"go-react-admin/server/internal/module"
-	"go-react-admin/server/internal/platform/iam/handler"
-	"go-react-admin/server/internal/platform/iam/repo"
-	"go-react-admin/server/internal/platform/iam/service"
+	"Go-React-Admin/server/internal/module"
+	"Go-React-Admin/server/internal/platform/iam/handler"
+	"Go-React-Admin/server/internal/platform/iam/repo"
+	"Go-React-Admin/server/internal/platform/iam/service"
 )
 
 type Module struct {

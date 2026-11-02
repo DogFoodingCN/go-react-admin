@@ -8,7 +8,7 @@ import (
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 
-	"go-react-admin/server/internal/platform/tenant/model"
+	"Go-React-Admin/server/internal/platform/tenant/model"
 )
 
 var ErrNotFound = errors.New("tenant not found")

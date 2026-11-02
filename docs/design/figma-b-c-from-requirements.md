@@ -170,7 +170,7 @@ Variant:   size=md, state=hover, tone=danger
    - [ ] 主列表/表单含 Empty / Error / 无权限（或 Loading）变体  
 5. **验收标准**：结构与状态与 final Frame 一致；**不以像素贴图为准**。实现侧以 `web/` 真实 antd / Pro token 为视觉真相。  
 
-Kit final 文件（本仓）：`go-react-admin B-Admin (antd Kit)` · wireframe draft：`go-react-admin B-Admin (antd)`。
+Kit final 文件（本仓）：`Go-React-Admin B-Admin (antd Kit)` · wireframe draft：`Go-React-Admin B-Admin (antd)`。
 
 ---
 

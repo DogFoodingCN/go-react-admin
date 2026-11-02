@@ -6,9 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"go-react-admin/server/internal/platform/setup/dto"
-	"go-react-admin/server/internal/platform/setup/service"
-	"go-react-admin/server/internal/shared/response"
+	"Go-React-Admin/server/internal/platform/setup/dto"
+	"Go-React-Admin/server/internal/platform/setup/service"
+	"Go-React-Admin/server/internal/shared/response"
 )
 
 type Handler struct {

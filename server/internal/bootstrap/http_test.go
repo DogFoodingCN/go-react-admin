@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"go-react-admin/server/internal/bootstrap"
-	"go-react-admin/server/internal/config"
+	"Go-React-Admin/server/internal/bootstrap"
+	"Go-React-Admin/server/internal/config"
 )
 
 func TestIAMMeWithDevToken(t *testing.T) {

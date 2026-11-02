@@ -1,10 +1,10 @@
 package tenant
 
 import (
-	"go-react-admin/server/internal/module"
-	"go-react-admin/server/internal/platform/tenant/handler"
-	"go-react-admin/server/internal/platform/tenant/repo"
-	"go-react-admin/server/internal/platform/tenant/service"
+	"Go-React-Admin/server/internal/module"
+	"Go-React-Admin/server/internal/platform/tenant/handler"
+	"Go-React-Admin/server/internal/platform/tenant/repo"
+	"Go-React-Admin/server/internal/platform/tenant/service"
 )
 
 type Module struct {

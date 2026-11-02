@@ -72,7 +72,7 @@ flowchart LR
 - [x] 向导步骤文案统一：`配置数据库连接（DSN）` / `设置平台超管账号` / `完成`
 - [x] `db_unreachable` / 测连失败：Alert + DSN 重试（对照 db-error）
 - [x] 成功态：Result「初始化完成」+「去登录」（可预填 username）
-- [x] 顶栏品牌 Lockup（logo + `go-react-admin`）
+- [x] 顶栏品牌 Lockup（logo + `Go-React-Admin`）
 
 ### 切片 P0-B — 登录页对齐终稿
 

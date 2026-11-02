@@ -1,4 +1,4 @@
-module go-react-admin/server
+module Go-React-Admin/server
 
 go 1.26.0
 

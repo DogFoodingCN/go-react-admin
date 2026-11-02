@@ -1,10 +1,10 @@
 package app
 
 import (
-	"go-react-admin/server/internal/module"
-	"go-react-admin/server/internal/platform/app/handler"
-	"go-react-admin/server/internal/platform/app/repo"
-	"go-react-admin/server/internal/platform/app/service"
+	"Go-React-Admin/server/internal/module"
+	"Go-React-Admin/server/internal/platform/app/handler"
+	"Go-React-Admin/server/internal/platform/app/repo"
+	"Go-React-Admin/server/internal/platform/app/service"
 )
 
 type Module struct {

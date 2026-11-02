@@ -15,11 +15,11 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 
-	"go-react-admin/server/internal/config"
-	"go-react-admin/server/internal/platform/setup/dto"
-	"go-react-admin/server/internal/platform/setup/model"
-	"go-react-admin/server/internal/platform/setup/repo"
-	"go-react-admin/server/internal/shared/db"
+	"Go-React-Admin/server/internal/config"
+	"Go-React-Admin/server/internal/platform/setup/dto"
+	"Go-React-Admin/server/internal/platform/setup/model"
+	"Go-React-Admin/server/internal/platform/setup/repo"
+	"Go-React-Admin/server/internal/shared/db"
 )
 
 var (

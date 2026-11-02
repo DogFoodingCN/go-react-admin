@@ -5,8 +5,8 @@ import (
 	"errors"
 	"strings"
 
-	"go-react-admin/server/internal/platform/tenant/dto"
-	"go-react-admin/server/internal/platform/tenant/repo"
+	"Go-React-Admin/server/internal/platform/tenant/dto"
+	"Go-React-Admin/server/internal/platform/tenant/repo"
 )
 
 var ErrInvalidInput = errors.New("invalid tenant input")

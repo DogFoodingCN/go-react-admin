@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 
-	"go-react-admin/server/internal/config"
-	"go-react-admin/server/internal/shared/authjwt"
-	"go-react-admin/server/internal/shared/db"
+	"Go-React-Admin/server/internal/config"
+	"Go-React-Admin/server/internal/shared/authjwt"
+	"Go-React-Admin/server/internal/shared/db"
 )
 
 // Deps is the shared runtime dependency bag for HTTP modules.

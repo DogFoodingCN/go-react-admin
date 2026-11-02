@@ -8,7 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	apctx "go-react-admin/server/internal/shared/ctx"
+	apctx "Go-React-Admin/server/internal/shared/ctx"
 )
 
 func TestWithUserTenant(t *testing.T) {

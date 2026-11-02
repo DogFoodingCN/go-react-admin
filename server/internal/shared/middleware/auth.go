@@ -5,9 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"go-react-admin/server/internal/shared/authjwt"
-	apctx "go-react-admin/server/internal/shared/ctx"
-	"go-react-admin/server/internal/shared/response"
+	"Go-React-Admin/server/internal/shared/authjwt"
+	apctx "Go-React-Admin/server/internal/shared/ctx"
+	"Go-React-Admin/server/internal/shared/response"
 )
 
 const HeaderTenantID = "X-Tenant-Id"

@@ -163,7 +163,7 @@
 ### 方案 E — Vue 3 + Vite + Element Plus / Naive UI（备选）
 
 **优势**：Element/Naive 后台组件成熟；部分团队更熟 Vue。  
-**劣势**：与现有 `go-react-admin`、架构文档中的 React 不一致；全栈 AI 工作流与模块地图需整体改写。  
+**劣势**：与现有 `Go-React-Admin`、架构文档中的 React 不一致；全栈 AI 工作流与模块地图需整体改写。  
 **结论**：**除非团队否决 React，否则不纳入正式候选。**
 
 ---

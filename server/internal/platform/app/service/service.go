@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 
-	"go-react-admin/server/internal/platform/app/dto"
-	"go-react-admin/server/internal/platform/app/repo"
-	apctx "go-react-admin/server/internal/shared/ctx"
+	"Go-React-Admin/server/internal/platform/app/dto"
+	"Go-React-Admin/server/internal/platform/app/repo"
+	apctx "Go-React-Admin/server/internal/shared/ctx"
 )
 
 type Service struct {

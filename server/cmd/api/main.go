@@ -4,9 +4,9 @@ import (
 	"log/slog"
 	"os"
 
-	"go-react-admin/server/internal/bootstrap"
-	"go-react-admin/server/internal/config"
-	"go-react-admin/server/internal/shared/db"
+	"Go-React-Admin/server/internal/bootstrap"
+	"Go-React-Admin/server/internal/config"
+	"Go-React-Admin/server/internal/shared/db"
 )
 
 func main() {

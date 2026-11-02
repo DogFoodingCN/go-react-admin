@@ -1,4 +1,4 @@
-# go-react-admin · web
+# Go-React-Admin · web
 
 方案 A：Vite + React + TypeScript + Ant Design + ProComponents + React Router + TanStack Query + Zustand。
 

@@ -1,10 +1,10 @@
 package audit
 
 import (
-	"go-react-admin/server/internal/module"
-	"go-react-admin/server/internal/platform/audit/handler"
-	"go-react-admin/server/internal/platform/audit/repo"
-	"go-react-admin/server/internal/platform/audit/service"
+	"Go-React-Admin/server/internal/module"
+	"Go-React-Admin/server/internal/platform/audit/handler"
+	"Go-React-Admin/server/internal/platform/audit/repo"
+	"Go-React-Admin/server/internal/platform/audit/service"
 )
 
 type Module struct {
