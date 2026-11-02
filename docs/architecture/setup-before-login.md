@@ -3,6 +3,7 @@
 - Status: **Implemented**（DSN 与超管均由前端提交；迁移暂用 GORM AutoMigrate）
 - Date: 2026-11-02
 - Relates: [tenancy-multi-app.md](./tenancy-multi-app.md) · [layering.md](./layering.md) · ADR 待补 `0004`
+- UI 实现要点（入口壳 / rem / SVG）：[../web/setup-entry-ui-notes.md](../web/setup-entry-ui-notes.md)
 
 ---
 
@@ -255,11 +256,17 @@ Status 对前端**不回传**完整 DSN/密码；最多 `db_host_masked` 类展�
 服务端步骤：
 
 1. 校验 `!initialized`、密码强度、DSN 非空  
-2. 用该 DSN 打开连接并 ping  
-3. goose up  
+2. **Ensure DB**：解析 DSN 中的 `dbname`；若不存在则先连维护库（`postgres`，失败再试 `template1`）执行 `CREATE DATABASE`，再连目标库并 ping（测连 `test-connection` 同逻辑）  
+3. AutoMigrate（当前实现；原计划 goose up）  
 4. 事务内：创建超管（hash 密码）、可选默认租户、写 `sys_setup`  
 5. 持久化 DSN  
 6. 热切换进程内 `*gorm.DB`（或提示重启——**优先热切换**，避免用户再起一次进程）
+
+说明：
+
+- 建库需要连接账号具备 `CREATEDB`（或超级用户）权限；系统库名（`postgres` / `template0` / `template1`）不会尝试创建。  
+- 进程启动时的 `db.Open` **不会**自动建库；仅 Setup 测连 / 初始化走 `OpenEnsuring`。  
+- 测连成功且新建了库时，返回文案可含 `database created`。
 
 失败：返回明确错误；尽量不写 `sys_setup`；DSN 未成功前不持久化。
 

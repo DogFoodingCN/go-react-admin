@@ -24,7 +24,8 @@ import { useSetupStore } from '@/shared/setup/setup-store'
 import type { AdminFormValues, DsnFormValues } from '@/shared/setup/types'
 import { rem } from '@/shared/style/rem'
 import {
-  BRAND_LOGO_SRC,
+  AuthEntryCard,
+  AuthEntryShell,
   SetupWizardShell,
 } from '@/shared/ui/AuthBrandLayout'
 
@@ -176,71 +177,8 @@ export function SetupPage() {
 
   if (phase === 'entry' && !unreachable && !done) {
     return (
-      <div className="setup-entry">
-        <img
-          aria-hidden
-          className="setup-entry__background"
-          src="/brand/setup-entry/background.svg"
-        />
-        <img
-          aria-hidden
-          className="setup-entry__geometry"
-          src="/brand/setup-entry/decorative-geometry.svg"
-        />
-
-        <div className="setup-entry__brand-block">
-          <div className="setup-entry__lockup">
-            <img src={BRAND_LOGO_SRC} alt="" />
-            <span>Go-React-Admin</span>
-          </div>
-
-          <section className="setup-entry__brand-copy">
-            <img
-              aria-hidden
-              className="setup-entry__accent"
-              src="/brand/setup-entry/accent-line.svg"
-            />
-            <h1>
-              多租户 · 多应用
-              <br />
-              管理控制台
-            </h1>
-            <p>
-              统一初始化、租户治理与应用开通，
-              <br />
-              让平台交付更清晰、更可控。
-            </p>
-          </section>
-        </div>
-
-        <section className="setup-entry__features">
-          <div className="setup-entry__feature">
-            <span className="setup-entry__feature-icon setup-entry__feature-icon--secure">
-              <img src="/brand/setup-entry/icon-secure.svg" alt="" />
-              <img src="/brand/setup-entry/icon-secure-check.svg" alt="" />
-            </span>
-            <span>安全可靠</span>
-          </div>
-          <img className="setup-entry__feature-divider" src="/brand/setup-entry/divider.svg" alt="" />
-          <div className="setup-entry__feature">
-            <span className="setup-entry__feature-icon setup-entry__feature-icon--audit">
-              <img src="/brand/setup-entry/icon-audit.svg" alt="" />
-              <img src="/brand/setup-entry/icon-audit-inner.svg" alt="" />
-            </span>
-            <span>可审计</span>
-          </div>
-          <img className="setup-entry__feature-divider" src="/brand/setup-entry/divider.svg" alt="" />
-          <div className="setup-entry__feature">
-            <span className="setup-entry__feature-icon setup-entry__feature-icon--extensible">
-              <img src="/brand/setup-entry/icon-extensible.svg" alt="" />
-              <img src="/brand/setup-entry/icon-extensible-inner.svg" alt="" />
-            </span>
-            <span>可扩展</span>
-          </div>
-          <small>Powered by <a href='https://dogfooding.cn' target='_blank'>dogfooding.cn</a></small>
-        </section>
-
-        <main className="setup-entry__card">
+      <AuthEntryShell>
+        <AuthEntryCard>
           <header className="setup-entry__heading">
             <h2>系统尚未初始化</h2>
             <p>完成安装向导后，即可使用超管账号登录</p>
@@ -280,8 +218,8 @@ export function SetupPage() {
               约 2～3 分钟 · 可随时返回本页
             </span>
           </footer>
-        </main>
-      </div>
+        </AuthEntryCard>
+      </AuthEntryShell>
     )
   }
 

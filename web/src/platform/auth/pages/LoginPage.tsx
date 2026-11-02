@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import { LockOutlined, SafetyOutlined, UserOutlined } from '@ant-design/icons'
-import { App, Button, Card, Checkbox, Form, Input, Space, Typography } from 'antd'
+import { App, Checkbox, Form, Input, Typography } from 'antd'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getApiErrorMessage, login } from '@/shared/setup/api'
 import { useAuthStore } from '@/shared/auth/auth-store'
 import { useTenantStore } from '@/shared/tenant/tenant-store'
-import { rem } from '@/shared/style/rem'
-import { AuthBrandLayout } from '@/shared/ui/AuthBrandLayout'
+import { AuthEntryCard, AuthEntryShell } from '@/shared/ui/AuthBrandLayout'
 
 type LoginFormValues = {
   username: string
@@ -16,6 +14,7 @@ type LoginFormValues = {
 }
 
 const allowDevFallback = import.meta.env.DEV && import.meta.env.VITE_ALLOW_DEV_LOGIN === 'true'
+const captchaCode = 'K8M3'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -31,14 +30,11 @@ export function LoginPage() {
   const [failCount, setFailCount] = useState(0)
   const locked = failCount >= 5
 
-  const captchaCode = 'K8M3'
-
   async function onFinish(values: LoginFormValues) {
     if (locked) {
       message.error('尝试次数过多，请稍后再试或联系管理员')
       return
     }
-    // 验证码 UI 占位：后端未接入前仅要求非空，不阻断主路径
     if (!values.captcha?.trim()) {
       setErrorText('请输入验证码')
       return
@@ -84,46 +80,34 @@ export function LoginPage() {
   }
 
   return (
-    <AuthBrandLayout>
-      <Card
-        bordered={false}
-        style={{
-          borderRadius: rem(12),
-          boxShadow: `0 ${rem(8)} ${rem(24)} rgba(15, 35, 80, 0.08)`,
-        }}
-        styles={{ body: { padding: rem(36) } }}
-      >
-        <Typography.Title level={2} style={{ marginTop: 0, marginBottom: rem(8) }}>
-          {locked ? '登录已锁定' : '欢迎登录'}
-        </Typography.Title>
-        <Typography.Paragraph type="secondary" style={{ marginBottom: rem(24) }}>
-          {locked
-            ? '连续失败次数过多，请稍后再试或联系管理员开通'
-            : '使用平台超管或租户账号进入控制台'}
-        </Typography.Paragraph>
-
-        {errorText && !locked ? (
-          <Typography.Paragraph type="danger" style={{ marginBottom: rem(16) }}>
-            {errorText}
-          </Typography.Paragraph>
-        ) : null}
+    <AuthEntryShell>
+      <AuthEntryCard className="auth-login-card">
+        <header className="setup-entry__heading">
+          <h2>{locked ? '登录已锁定' : '欢迎登录'}</h2>
+          <p>
+            {locked
+              ? '连续失败次数过多，请稍后再试或联系管理员'
+              : '使用平台超管或租户账号进入控制台'}
+          </p>
+        </header>
 
         {locked ? (
-          <Space direction="vertical" style={{ width: '100%' }} size={16}>
-            <Typography.Text type="secondary">
-              安全策略：短时间多次失败后暂时锁定本页登录操作。
-            </Typography.Text>
-            <Button
+          <div className="auth-login-locked">
+            <p>安全策略：短时间多次失败后暂时锁定本页登录操作。</p>
+            <button
+              className="setup-entry__button"
+              type="button"
               onClick={() => {
                 setFailCount(0)
                 setErrorText(null)
               }}
             >
               我知道了，重试
-            </Button>
-          </Space>
+            </button>
+          </div>
         ) : (
           <Form
+            className="auth-login-form"
             form={form}
             layout="vertical"
             requiredMark={false}
@@ -133,89 +117,78 @@ export function LoginPage() {
             }}
             onFinish={(values) => void onFinish(values)}
           >
+            {errorText ? <p className="auth-login-form__error">{errorText}</p> : null}
+
             <Form.Item
               name="username"
+              label="用户名"
               rules={[{ required: true, message: '请输入用户名' }]}
             >
               <Input
-                size="large"
-                prefix={<UserOutlined />}
+                className="auth-login-form__input"
                 placeholder="请输入用户名"
                 autoComplete="username"
               />
             </Form.Item>
+
             <Form.Item
               name="password"
+              label="密码"
               rules={[{ required: true, message: '请输入密码' }]}
             >
               <Input.Password
-                size="large"
-                prefix={<LockOutlined />}
+                className="auth-login-form__input"
                 placeholder="请输入密码"
                 autoComplete="current-password"
               />
             </Form.Item>
-            <Form.Item
-              name="captcha"
-              rules={[{ required: true, message: '请输入验证码' }]}
-            >
-              <Space.Compact style={{ width: '100%' }}>
+
+            <div className="auth-login-form__captcha-row">
+              <Form.Item
+                className="auth-login-form__captcha-field"
+                name="captcha"
+                label="验证码"
+                rules={[{ required: true, message: '请输入验证码' }]}
+              >
                 <Input
-                  size="large"
-                  prefix={<SafetyOutlined />}
+                  className="auth-login-form__input"
                   placeholder="请输入验证码"
-                  style={{ flex: 1 }}
                 />
-                <Button
-                  size="large"
-                  style={{
-                    width: rem(120),
-                    fontWeight: 700,
-                    letterSpacing: rem(2),
-                    background: '#e6f4ff',
-                    borderColor: '#91caff',
-                    color: '#0958d9',
-                  }}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    message.info(`演示验证码：${captchaCode}`)
-                  }}
-                >
-                  {captchaCode}
-                </Button>
-              </Space.Compact>
-            </Form.Item>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                marginBottom: rem(20),
-              }}
-            >
+              </Form.Item>
+              <button
+                className="auth-login-form__captcha-btn"
+                type="button"
+                onClick={() => message.info(`演示验证码：${captchaCode}`)}
+              >
+                {captchaCode}
+              </button>
+            </div>
+
+            <div className="auth-login-form__meta">
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>记住我</Checkbox>
               </Form.Item>
-              <Typography.Link type="secondary" style={{ fontSize: rem(13) }}>
-                忘记密码？ 联系管理员
-              </Typography.Link>
+              <Typography.Link type="secondary">忘记密码？联系管理员</Typography.Link>
             </div>
-            <Button type="primary" htmlType="submit" size="large" block loading={submitting}>
-              登录
-            </Button>
-            <Typography.Paragraph
-              type="secondary"
-              style={{
-                textAlign: 'center',
-                marginTop: rem(20),
-                marginBottom: 0,
-                fontSize: rem(13),
-              }}
-            >
-              安全 · 可审计 · 可扩展
-            </Typography.Paragraph>
+
+            <button className="setup-entry__button" type="submit" disabled={submitting}>
+              {submitting ? '登录中…' : '登录'}
+            </button>
           </Form>
         )}
-      </Card>
-    </AuthBrandLayout>
+
+        <footer className="setup-entry__card-footer">
+          <img
+            aria-hidden
+            className="setup-entry__footer-line"
+            src="/brand/setup-entry/footer-line.svg"
+          />
+          <span>
+            <img src="/brand/setup-entry/footer-shield.svg" alt="" />
+            仅支持账号密码登录
+          </span>
+        </footer>
+      </AuthEntryCard>
+    </AuthEntryShell>
   )
 }

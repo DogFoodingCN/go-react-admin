@@ -53,6 +53,13 @@ web/
 4. **菜单数据**：后端按租户开通下发；ProLayout 只做渲染适配，业务页不依赖 Pro 菜单内部结构。
 5. **Pro 组件克制**：优先 ProTable/ProForm；复杂多应用壳逻辑放在 `app/layouts` 适配层。
 
+## 尺寸单位（rem）
+
+- 根字号：`html { font-size: 16px }`（`1rem = 16px`），定义于 `src/app/styles.css`。
+- 自定义布局 / 字号用 rem；TS 内联样式用 `rem()`（`src/shared/style/rem.ts`）。
+- 保留 px：`1px` 发丝线、媒体查询断点；Ant Design 组件 API 数值不强行改 rem。
+- Setup 全屏入口的布局与坑点见 [setup-entry-ui-notes.md](./setup-entry-ui-notes.md)。
+
 ## 命名与路由
 
 - 平台：`/platform/...`（如 `/platform/tenants`）

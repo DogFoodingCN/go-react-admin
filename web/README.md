@@ -2,7 +2,8 @@
 
 方案 A：Vite + React + TypeScript + Ant Design + ProComponents + React Router + TanStack Query + Zustand。
 
-约定见 [`docs/web/conventions.md`](../docs/web/conventions.md)。
+约定见 [`docs/web/conventions.md`](../docs/web/conventions.md)。  
+Setup 入口页 UI 要点见 [`docs/web/setup-entry-ui-notes.md`](../docs/web/setup-entry-ui-notes.md)。
 
 ## 命令
 

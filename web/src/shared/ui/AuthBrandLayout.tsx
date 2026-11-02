@@ -5,138 +5,116 @@ import { rem } from '@/shared/style/rem'
 /** Figma 导出的品牌标志（登录 Brand/LogoMark） */
 export const BRAND_LOGO_SRC = '/brand/logo-mark.svg'
 
-const brandPanelStyle: CSSProperties = {
-  position: 'relative',
-  minWidth: 0,
-  height: '100%',
-  padding: `${rem(64)} ${rem(56)} ${rem(40)}`,
-  color: '#fff',
-  background: 'linear-gradient(160deg, #0b1f4d 0%, #123a8c 42%, #1677ff 100%)',
-  overflow: 'hidden',
-  display: 'flex',
-  flexDirection: 'column',
-  boxSizing: 'border-box',
-}
-
-const cardPanelStyle: CSSProperties = {
-  minWidth: 0,
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: `${rem(40)} ${rem(32)}`,
-  background: '#f0f5ff',
-  boxSizing: 'border-box',
-  overflow: 'auto',
-}
-
-type AuthBrandLayoutProps = {
+type AuthEntryShellProps = {
   children: ReactNode
-  /** 右侧卡片最大宽度（设计稿 px，内部转 rem） */
-  cardMaxWidth?: number
-  footerNote?: string
+  /** 底部特性区副文案 */
+  featuresNote?: ReactNode
 }
 
 /**
- * 登录 / Setup 左右分栏壳（对齐 Figma）。
- * 使用固定两列 Grid，避免 flex-wrap 把右侧挤到下一行变成「上下结构」。
+ * 登录 / Setup 入口共用壳（对齐 Figma setup-entry）。
+ * 左侧背景、品牌文案、特性条固定；右侧卡片内容由 children 注入。
  */
-export function AuthBrandLayout({
+export function AuthEntryShell({
   children,
-  cardMaxWidth = 480,
-  footerNote = '仅支持账号密码登录',
-}: AuthBrandLayoutProps) {
+  featuresNote = (
+    <>
+      Powered by{' '}
+      <a href="https://dogfooding.cn" target="_blank" rel="noreferrer">
+        dogfooding.cn
+      </a>
+    </>
+  ),
+}: AuthEntryShellProps) {
   return (
-    <div
-      style={{
-        height: '100%',
-        minHeight: '100vh',
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0, 0.92fr) minmax(0, 1.08fr)',
-        gridTemplateRows: 'minmax(100vh, 1fr)',
-        background: '#f0f5ff',
-      }}
-    >
-      <aside style={brandPanelStyle}>
-        <BrandLockup light height={40} />
-        <div style={{ marginTop: rem(56), maxWidth: rem(420) }}>
-          <div
-            style={{
-              width: rem(72),
-              height: rem(6),
-              borderRadius: rem(3),
-              background: 'rgba(255,255,255,0.85)',
-              marginBottom: rem(28),
-            }}
+    <div className="setup-entry">
+      <img
+        aria-hidden
+        className="setup-entry__background"
+        src="/brand/setup-entry/background.svg"
+      />
+      <img
+        aria-hidden
+        className="setup-entry__geometry"
+        src="/brand/setup-entry/decorative-geometry.svg"
+      />
+
+      <div className="setup-entry__brand-block">
+        <div className="setup-entry__lockup">
+          <img src={BRAND_LOGO_SRC} alt="" />
+          <span>Go-React-Admin</span>
+        </div>
+
+        <section className="setup-entry__brand-copy">
+          <img
+            aria-hidden
+            className="setup-entry__accent"
+            src="/brand/setup-entry/accent-line.svg"
           />
-          <Typography.Title
-            level={1}
-            style={{
-              color: '#fff',
-              fontSize: rem(44),
-              lineHeight: 1.2,
-              margin: 0,
-              fontWeight: 600,
-            }}
-          >
+          <h1>
             多租户 · 多应用
             <br />
             管理控制台
-          </Typography.Title>
-          <Typography.Paragraph
-            style={{
-              color: 'rgba(255,255,255,0.88)',
-              fontSize: rem(17),
-              marginTop: rem(24),
-              marginBottom: 0,
-              lineHeight: 1.6,
-            }}
-          >
+          </h1>
+          <p>
             统一初始化、租户治理与应用开通，
             <br />
             让平台交付更清晰、更可控。
-          </Typography.Paragraph>
+          </p>
+        </section>
+      </div>
+
+      <section className="setup-entry__features">
+        <div className="setup-entry__feature">
+          <span className="setup-entry__feature-icon setup-entry__feature-icon--secure">
+            <img src="/brand/setup-entry/icon-secure.svg" alt="" />
+            <img src="/brand/setup-entry/icon-secure-check.svg" alt="" />
+          </span>
+          <span>安全可靠</span>
         </div>
-        <div style={{ marginTop: 'auto', paddingTop: rem(48) }}>
-          <div
-            style={{
-              display: 'flex',
-              gap: rem(20),
-              marginBottom: rem(12),
-              flexWrap: 'wrap',
-            }}
-          >
-            {['安全可靠', '可审计', '可扩展'].map((label) => (
-              <Typography.Text
-                key={label}
-                style={{ color: 'rgba(255,255,255,0.9)', fontSize: rem(14) }}
-              >
-                {label}
-              </Typography.Text>
-            ))}
-          </div>
-          <Typography.Text style={{ color: 'rgba(255,255,255,0.55)', fontSize: rem(13) }}>
-            {footerNote}
-          </Typography.Text>
-        </div>
-        <div
-          aria-hidden
-          style={{
-            position: 'absolute',
-            right: rem(-40),
-            bottom: rem(-40),
-            width: rem(220),
-            height: rem(220),
-            borderRadius: rem(24),
-            background: 'rgba(255,255,255,0.08)',
-            transform: 'rotate(18deg)',
-          }}
+        <img
+          className="setup-entry__feature-divider"
+          src="/brand/setup-entry/divider.svg"
+          alt=""
         />
-      </aside>
-      <main style={cardPanelStyle}>
-        <div style={{ width: '100%', maxWidth: rem(cardMaxWidth) }}>{children}</div>
-      </main>
+        <div className="setup-entry__feature">
+          <span className="setup-entry__feature-icon setup-entry__feature-icon--audit">
+            <img src="/brand/setup-entry/icon-audit.svg" alt="" />
+            <img src="/brand/setup-entry/icon-audit-inner.svg" alt="" />
+          </span>
+          <span>可审计</span>
+        </div>
+        <img
+          className="setup-entry__feature-divider"
+          src="/brand/setup-entry/divider.svg"
+          alt=""
+        />
+        <div className="setup-entry__feature">
+          <span className="setup-entry__feature-icon setup-entry__feature-icon--extensible">
+            <img src="/brand/setup-entry/icon-extensible.svg" alt="" />
+            <img src="/brand/setup-entry/icon-extensible-inner.svg" alt="" />
+          </span>
+          <span>可扩展</span>
+        </div>
+        <small>{featuresNote}</small>
+      </section>
+
+      {children}
     </div>
+  )
+}
+
+type AuthEntryCardProps = {
+  children: ReactNode
+  className?: string
+}
+
+/** 右侧入口卡片容器，登录与 Setup 入口共用尺寸与阴影 */
+export function AuthEntryCard({ children, className }: AuthEntryCardProps) {
+  return (
+    <main className={['setup-entry__card', className].filter(Boolean).join(' ')}>
+      {children}
+    </main>
   )
 }
 

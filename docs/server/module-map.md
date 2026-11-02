@@ -24,7 +24,8 @@
 
 | 模块 | 路径前缀 | HTTP | 状态 |
 |------|----------|------|------|
-| setup | `internal/platform/setup` | `GET/POST /api/v1/setup/*` | ready（status / test-connection / initialize；AutoMigrate） |
+| setup | `internal/platform/setup` | `GET/POST /api/v1/setup/*` | ready（status / test-connection / initialize；缺库则 CREATE DATABASE；AutoMigrate） |
+| db ensure | `internal/shared/db` | `OpenEnsuring` / `EnsureDatabase` | ready（Setup 测连与初始化用） |
 | auth | `internal/platform/auth` | `POST /api/v1/auth/login` | ready（有 platform_users 时 bcrypt；无 DB 仍 stub） |
 | tenant | `internal/platform/tenant` | `GET/POST /api/v1/platform/tenants` · `GET/PATCH /:id` | ready（DB 空时 stub） |
 | app | `internal/platform/app` | `GET /api/v1/platform/apps` | example |

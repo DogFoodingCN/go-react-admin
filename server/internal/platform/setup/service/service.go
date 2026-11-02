@@ -116,17 +116,18 @@ func (s *Service) TestConnection(ctx context.Context, req dto.TestConnectionRequ
 		return nil, ErrInvalidDSN
 	}
 
-	gdb, err := db.Open(dsn)
+	gdb, created, err := db.OpenEnsuring(dsn)
 	if err != nil {
 		return &dto.TestConnectionResponse{OK: false, Message: sanitizeErr(err)}, nil
 	}
 	defer db.Close(gdb)
 
-	if err := db.Ping(gdb); err != nil {
-		return &dto.TestConnectionResponse{OK: false, Message: sanitizeErr(err)}, nil
-	}
 	_ = ctx
-	return &dto.TestConnectionResponse{OK: true, Message: "connection ok"}, nil
+	msg := "connection ok"
+	if created {
+		msg = "connection ok; database created"
+	}
+	return &dto.TestConnectionResponse{OK: true, Message: msg}, nil
 }
 
 func (s *Service) Initialize(ctx context.Context, req dto.InitializeRequest) (*dto.InitializeResponse, error) {
@@ -147,14 +148,12 @@ func (s *Service) Initialize(ctx context.Context, req dto.InitializeRequest) (*d
 		return nil, ErrWeakPassword
 	}
 
-	gdb, err := db.Open(dsn)
+	gdb, created, err := db.OpenEnsuring(dsn)
 	if err != nil {
 		return nil, fmt.Errorf("connect: %s", sanitizeErr(err))
 	}
-
-	if err := db.Ping(gdb); err != nil {
-		_ = db.Close(gdb)
-		return nil, fmt.Errorf("ping: %s", sanitizeErr(err))
+	if created {
+		slog.Info("setup created missing database before initialize")
 	}
 
 	if err := s.repo.AutoMigrate(gdb); err != nil {
